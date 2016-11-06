@@ -17,7 +17,7 @@ public class Batchloader {
 
 	private void readPageviewsAsStream() {
 		try {
-			URI uri = BatchloaderRef.class.getClassLoader().getResource(DATA_FILE).toURI();
+			URI uri = Batchloader.class.getClassLoader().getResource(DATA_FILE).toURI();
 			try (Stream<String> stream = Files.lines(Paths.get(uri))) {
 				stream.forEach(element -> writeToPail(getDatafromString(element)));
 			} catch (Exception e) {
