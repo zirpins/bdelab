@@ -57,7 +57,7 @@ su - hadoop
 start-dfs.sh
 ```
 
-Als User `hadoop` können die [Hadoop Skripte](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/CommandsManual.html) verwendet werden, um z.B. das Dateisystem zu untersuchen:
+Als User `hadoop` können die [Hadoop Skripte](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/CommandsManual.html) verwendet werden, um z.B. das Dateisystem zu untersuchen: 
 
 ```
 hadoop fs -ls /user/hadoop
@@ -125,7 +125,7 @@ Nun können Jobs mit dem `hadoop` Befehl eingestellt werden.
 ##### Aufgabe 2.1 (WordCount)
 Zunächst soll ein einfaches Beispiel betrachtet werden. Im Paket `de.hska.iwi.bdelab.batchjobs` liegen die Klassen `WordCountOldAPI` und `WordCountNewAPI` mit MapReduce Jobs für das klassische Word Count Beispiel. Für MapReduce existieren zwei APIs: `org.apache.hadoop.mapred` und die neuere `org.apache.hadoop.mapreduce`. Die APIs unterscheiden sich leicht in der Verwendung, sind aber weitgehend äquivalent. Ein [Tutorium](http://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html) findet sich auf der Hadoop Webseite.
 
-Vor der Verwendung muss das Projekt mit erstellt werden:
+Vor der Verwendung muss das Projekt mit maven erstellt werden:
 ```
 cd ~vislab/git/bdelab/lab2
 mvn package
@@ -149,6 +149,13 @@ hadoop jar ~vislab/git/bdelab/lab2/target/bdelab2-0.0.1-SNAPSHOT-jar-with-depend
 Das Ergebnis findet sich im Anschluss im HDFS:
 ```
 hadoop fs -cat wc/out/part-00000
+```
+
+Zur Wiederholung des Experiments muss der Ordner `wc/out` wieder gelöscht werden:
+
+```
+hadoop fs -rm -skipTrash wc/out/*
+hadoop fs -rmdir wc/out
 ```
 
 ##### Aufgabe 2.2 (Pageviews)
