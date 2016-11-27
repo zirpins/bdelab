@@ -19,7 +19,7 @@ public class CountFacts2 extends QueryBase {
 		// Erzeuge Tap aus Master Pail
 		Tap masterDataset = dataTap(FileUtils.DATA_ROOT + "master");
 
-		// Die Quey erzeugt nur einen Zählerwert
+		// Die Query erzeugt nur einen Zählerwert
 		query = new Subquery("?count")
 				// Master PailTap generiert Tupel nur mit Data Element
 				.predicate(masterDataset, "_", "?raw")
