@@ -177,7 +177,7 @@ Schauen sie sich den Quelltext von `CountFacts` an. Dort sehen Sie die Konfigura
 **Aufgabe:** erstellen Sie einen MapReduce Job zur Berechnung eines Pageview Index. Der Index soll für alle vorkommenden Stundenintervalle die Anzahl der Aufrufe einzelner Seiten zählen. Die Ausgabe soll als Textdatei der Form `<Datum/Stunde> <URL> <Anzahl der Aufrufe>` erfolgen. Orientieren Sie sich dafür am `CountFacts` Job
 
 ## Lab3: Batch Workflow / Cascalog
-Die Aufgabe vertieft die Verarbeitungsschritte im Batch Layer. Es wird **Cascalog** als Framework für die deklarative Erstellung komplexer MapReduce Verarbeitungsprozesse eingeführt. Auf Basis von Cascalog wird ein einfacher Batch Workflow mit Import Normalisierung und Vorverarbeitung realisiert.
+Die Aufgabe vertieft die Verarbeitungsschritte im Batch Layer. Es wird **Cascalog** als Framework für die deklarative Erstellung komplexer MapReduce Verarbeitungsprozesse eingeführt. Auf Basis von Cascalog wird ein einfacher Batch Workflow mit Daten-Import, -Normalisierung und -Vorverarbeitung realisiert.
 
 ### Vorbereitung
 Als Plattform wird weiterhin **Hadoop 2.7.0 YARN** verwendet. Die Umgebung ist auf der **VirtualBox Appliance** `VISLABv83` vorbereitet. Im Pool liegt die Virtual Appliance lokal vor (`/usr/local/share/...`) und muss für Ihren Account installiert werden.
