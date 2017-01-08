@@ -15,14 +15,14 @@ In der Aufgabe wird...
 1. ...die Faktenbasis des Batch Layers als *Graph Schema* modelliert und mithilfe von *Apache Thrift* implementiert und
 2. ...die physikalische Speicherung von Fakten auf *Hadoop HDFS* mit dem *dfs-datastore* Framework implementiert.
 
-### Vorbereitung
+### Lab1 Vorbereitung
 In der Aufgabe werden folgende zusätzliche Komponenten benötigt:
 - Zur Generierung von Klassen für das Datenmodell wird [Apache Thrift](https://thrift.apache.org) benötigt. Konkret muss der **Thrift Compiler** lokal installiert sein.
 - Als verteiltes Dateisystem wird Hadoop HDFS verwendet. Hierzu sollte eine einfache Hadoop Installation vorliegen. Wir verwenden zur Zeit [**Hadoop 2.7.0**](http://hadoop.apache.org/releases.html#Download).
 
 Richten Sie diese Komponenten entweder auf Ihrem Entwicklungsrechner ein, oder installieren Sie die bereitgestellte **VirtualBox Appliance** `VISLABv80`.  Im Pool liegt die Virtual Appliance lokal vor und muss für Ihren Account installiert werden.
 
-### Durchführung
+### Lab1 Durchführung
 Melden Sie sich an der `VISLABv80` VM an und starten Sie dort Eclipse. Aktualisieren Sie das `bdelab` Projekt.
 
 ```
@@ -86,10 +86,10 @@ Führen Sie in der VM beide JUnit Tests zunächst lokal und dann auf HDFS aus (v
 ## Lab2: Batch Processing
 In der Aufgabe wird ein einfaches Beispiel für die Batch Verarbeitung mit MapReduce betrachtet und auf die Verarbeitung von Fakten in Pails übertragen. <!--  Optional wird dann noch JCascalog als Ansatz zur deklarativen Beschreibung von Batch Verarbeitung auf höherem Abstraktionsgrad verwendet. -->
 
-### Vorbereitung
+### Lab2 Vorbereitung
 Als Plattform wird **Hadoop 2.7.0 YARN** und auf dieser Basis das **MapReduce** Framework verwendet. Die Komponenten sind auf der **VirtualBox Appliance** `VISLABv82` vorbereitet. Im Pool liegt die Virtual Appliance lokal vor und muss für Ihren Account installiert werden.
 
-### <a name="lab2durchführung">Durchführung</a>
+### <a name="lab2durchführung">Lab2 Durchführung</a>
 Melden Sie sich an der `VISLABv82` VM an und starten Sie dort Eclipse. Aktualisieren Sie das `bdelab` Projekt (optional bei vorhandener Netzwerkverbindung).
 
 ```
@@ -179,10 +179,10 @@ Schauen sie sich den Quelltext von `CountFacts` an. Dort sehen Sie die Konfigura
 ## Lab3: Batch Workflow / Cascalog
 Die Aufgabe vertieft die Verarbeitungsschritte im Batch Layer. Es wird **Cascalog** als Framework für die deklarative Erstellung komplexer MapReduce Verarbeitungsprozesse eingeführt. Auf Basis von Cascalog wird ein einfacher Batch Workflow mit Daten-Import, -Normalisierung und -Vorverarbeitung realisiert.
 
-### Vorbereitung
+### Lab3 Vorbereitung
 Als Plattform wird weiterhin **Hadoop 2.7.0 YARN** verwendet. Die Umgebung ist auf der **VirtualBox Appliance** `VISLABv83` vorbereitet. Im Pool liegt die Virtual Appliance lokal vor (`/usr/local/share/...`) und muss für Ihren Account installiert werden.
 
-### Durchführung
+### Lab3 Durchführung
 Melden Sie sich an der `VISLABv83` VM an und starten Sie dort Eclipse. Aktualisieren Sie falls nötig das `bdelab` Projekt (siehe [Lab2 Durchführung](#lab2durchführung)). Die Aufgabe basiert auf dem Maven Projekt `bdelab3` im Ordner `bdelab/lab3`. Importieren Sie das Projekt zunächst wieder in Ihren Eclipse Workspace (falls nicht schon geschehen).
 
 #### Cascalog
@@ -218,30 +218,33 @@ hadoop jar /home/vislab/git/bdelab/lab3/target/bdelab3-0.0.1-SNAPSHOT-jar-with-d
 **Aufgabe:** Die Cascalog Query für die URL-Normalisierung ist noch nicht implementiert (sie ist zwar vorhanden, tut aber noch nichts sinnvolles). In diesem Projekt enthalten die Fakten unterschiedliche URL-Varianten für die gleichen Ressourcen. Implementieren Sie die URL-Normalisierung aus der Vorlesung, so dass ein korrekter Pageview Index berechnet wird.
 
 ## Lab4: Stream Processing / Storm
-Die Aufgabe veranschaulicht die Verarbeitung im Speed Layer. Wir betrachten dabei One-at-a-Time Streaming auf Basis von [Apache Storm](http://storm.apache.org/). Als Datenquelle dient eine Multi-Consumer-Queue auf Basis von [Apache Kafka](http://kafka.apache.org/).  Mit dieser Konfiguration untersuchen wir zunächst das *Beispiel einer einfachen Word Count Implementierung*. Die Aufgabe besteht dann in der *Implementierung des Pageviews-pro-Zeit Index als Storm Topologie*..
+Die Aufgabe veranschaulicht die Verarbeitung im Speed Layer. Wir betrachten dabei One-at-a-Time Streaming auf Basis von Storm. Als Datenquelle dient eine Multi-Consumer-Queue auf Basis von Kafka.  
 
-### Hintergrund
+Mit dieser Konfiguration untersuchen wir zunächst das *Beispiel einer einfachen Word Count Implementierung*. Die Aufgabe besteht dann in der *Implementierung des Pageviews-pro-Zeit Index als Storm Topologie*.
 
- **Apache Storm** realisiert eine Plattform für One-at-a-Time und Micro-Batch **Stream Verarbeitung** in Cluster-Umgebungen. Verarbeitungsprozesse werden durch *Topologien* aus *Spout* und *Bolt* Komponenten spezifiziert, die vom zentralen *Nimbus* als *Tasks* auf verschiedene *Worker* Knoten eines Clusters verteilt werden (siehe [Apache Storm Concepts](http://storm.apache.org/releases/1.0.2/Concepts.html)).
+### Lab4 Hintergrund
+[Apache Storm](http://storm.apache.org/) realisiert eine Plattform für One-at-a-Time (und Micro-batched) Stream Verarbeitung in Cluster-Umgebungen. Verarbeitungsprozesse werden durch *Topologien* aus *Spouts* und *Bolts* spezifiziert, die vom zentralen *Nimbus* als *Tasks* auf verschiedene *Worker* Knoten eines Clusters verteilt werden (siehe [Apache Storm Concepts](http://storm.apache.org/releases/1.0.2/Concepts.html)).
 
-Wir nutzen eine Möglichkeit von Storm aus, Topologien auch ohne verteilte Infrastruktur auf einem `LocalCluster` innerhalb eines Java Prozesses auszuführen (siehe [Apache Storm Local Mode](http://storm.apache.org/releases/1.0.2/Local-mode.html)). Solche Streaming Prozesse können leicht als Java Anwendungen aus einer IDE wie Eclipse oder IntelliJ gestartet werden.
+Wir nutzen eine Möglichkeit von Storm aus, Topologien auch ohne verteilte Infrastruktur auf einem `LocalCluster` innerhalb eines Java Prozesses auszuführen (siehe [Apache Storm Local Mode](http://storm.apache.org/releases/1.0.2/Local-mode.html)). 
 
-**Apache Kafka** stellt eine performante Infrastruktur für die Verwaltung, Speicherung und Verarbeitung von Datenströmen bereit und kann u.a. als replizierte und partitionierte Nachrichtenwarteschlange bzw. Message Queue dienen.
+Solche Streaming Prozesse können leicht als Java Anwendungen aus einer IDE wie Eclipse oder IntelliJ gestartet werden.
 
-Insbesondere können Kafka *Topics* als Multi-Consumer-Queues genutzt werden, bei denen *Records*, bestehend aus *Name* und *Value* für verschiedene Streaming Prozesse genutzt und bei Bedarf gemäß ihrer Position (Offset) wiederholt werden```` können (siehe [Apache Kafka Intro](http://kafka.apache.org/intro)). 
+[Apache Kafka](http://kafka.apache.org/) stellt eine performante Infrastruktur für die Verwaltung, Speicherung und Verarbeitung von Datenströmen bereit. Kafka kann u.a. replizierte und partitionierte Message Queues bereitstellen.
 
-<!--Die Semantik von Kafka Topics passt optimal zur Stream-Verarbeitung in Storm und wird dort zur garantierten Verarbeitung (at-least-once) von Nachrichten verwendet.-->
+Insbesondere können Kafka *Topics* als Multi-Consumer-Queues genutzt werden, bei denen *Records*, bestehend aus *Name* und *Value* für verschiedene Streaming Prozesse (ConsumerGroups) genutzt und bei Bedarf gemäß ihrer Position wiederholt werden können (siehe [Apache Kafka Intro](http://kafka.apache.org/intro)). 
 
-### Vorbereitung
+Die Semantik von Kafka Topics passt optimal zur Stream-Verarbeitung in Storm und wird dort zur garantierten Verarbeitung (at-least-once) von Nachrichten verwendet.
+
+### Lab4 Vorbereitung
 Als Infrastruktur benötigen wir nur **Kafka 0.9+** (für Storm nutzen wir einen eingebetteten "Cluster"). Die Umgebung ist auf der **VirtualBox Appliance** `VISLABv84` vorbereitet. Im Pool liegt die Virtual Appliance lokal vor (`/usr/local/share/...`) und muss für Ihren Account installiert werden.
 
-Kafka kann aber auch sehr leicht selbst installiert werden ([siehe Kafka Quickstart](http://kafka.apache.org/quickstart)).
+Kafka kann aber auch sehr leicht selbst installiert werden (siehe [Kafka Quickstart](http://kafka.apache.org/quickstart)).
 
-### Durchführung
-Melden Sie sich an der `VISLABv84` VM an und starten Sie dort Eclipse. Aktualisieren Sie falls nötig das `bdelab` Projekt (siehe [Lab2 Durchführung](#lab2durchführung)). Die Aufgabe basiert auf dem Maven Projekt `storm-word-count` im Ordner `bdelab/lab4/stormwordcount`. Importieren Sie das Projekt zunächst wieder in Ihren Eclipse Workspace (falls nicht schon geschehen).
+### Lab4 Durchführung
+Melden Sie sich an der `VISLABv84` VM an und starten Sie dort Eclipse. Aktualisieren Sie falls nötig das `~vislab/git/bdelab` Projekt (siehe [Lab2 Durchführung](#lab2durchführung)). Die Aufgabe basiert auf dem Maven Projekt `storm-word-count` im Ordner `~vislab/git/bdelab/lab4/stormwordcount`. Importieren Sie das Projekt zunächst wieder in Ihren Eclipse Workspace (falls nicht schon geschehen).
 
 ### Aufgabe 4.1 
-Probieren Sie zunächst das Wordcount Beispiel aus. Hierzu muss zunächst Kafka vorbereitet werden, danach kann die Storm Topology zur Ausführung kommen.
+Probieren Sie das Wordcount Beispiel aus. Hierzu muss zunächst Kafka vorbereitet werden, danach kann die Storm Topology zur Ausführung kommen.
 
 #### Kafka Wordcount Topic und Producer aufsetzen
 Das schnelle Aufsetzen von Kafka wird in [Kafka Quickstart](http://kafka.apache.org/quickstart) beschrieben. Folgen Sie dieser Anleitung und 
@@ -251,12 +254,12 @@ Das schnelle Aufsetzen von Kafka wird in [Kafka Quickstart](http://kafka.apache.
 - ...starten Sie einen **Producer** für `sentence`
 - ...testen Sie das Topic mit einem **Consumer**
 
-Auf `VISLABv84` ist Kafka im Verzeichnis `~vislab/lib//kafka_2.11-0.10.1.0` installiert und dessen `bin` Verzeichnis befindet sich im `PATH` (Kafka Skripte können also von jedem Ort nur über ihren Dateinamen ausgeführt werden).
+Auf `VISLABv84` ist Kafka im Verzeichnis `~vislab/lib/kafka_2.11-0.10.1.0` installiert.
 
 #### Storm Topologie ausführen
 Öffnen Sie das *storm-word-count Projekt* in Ihrer IDE. `WordcountTopology` ist im Package `de.hska.iwi.vsys.bdelab.streaming` spezifiziert. Die Topologie nutzt [storm-kafka-client](https://github.com/apache/storm/tree/v1.0.2/external/storm-kafka-client) zur Definition des `SentenceSpout` (als *Consumer* des Kafka Topics `sentence`).
 
-Starten Sie `WordcountTopology` als Java Anwendung in der IDE. Geben Sie nun einige Sätze in den Command Line Producer ein und beobachten Sie die Debug-Ausgaben der Topologie, um die Verarbeitung nachzuverfolgen.
+Starten Sie `WordcountTopology` als Java-Anwendung in der IDE. Geben Sie nun einige Sätze in den Command Line Producer ein und beobachten Sie die Ausgaben der Topologie, um die Verarbeitung nachzuverfolgen. (Sie können auch in der der `WordcountTopology` die Debug-Ausgabe aktivieren, um u.a. das "Acking" der Tupel zu beobachten.)
 
 Versuchen Sie, die Implementierung der Topologie mit Spout und Bolts nachzuvollziehen.
 
@@ -264,16 +267,23 @@ Versuchen Sie, die Implementierung der Topologie mit Spout und Bolts nachzuvollz
 Die eigentliche Aufgabe besteht nun darin, die Berechnung des Pageview-pro-Zeit Index als Storm Topologie zu implementieren.
 
 #### Kafka vorbereiten
-Legen Sie zunächst ein passendes Kafka Topic für Pageview Ereignisse an. Nutzen Sie für die Record Values das Format aus den vorangegangenen Aufgaben (siehe Datei `pageviews2.txt` aus bdelab3). 
+Legen Sie zunächst ein passendes Kafka Topic für Pageview Ereignisse an. Gehen Sie für die Kafka Record Values (d.h. die Nachrichteninhalte) vom Format der vorangegangenen Aufgaben aus:
+
+```
+<IP> <URL> <EPOCH-TIME>
+``` 
+
+(siehe Datei `pageviews2.txt` aus bdelab3).
 
 #### Storm Topologie
-Für die Pageview Topologie können Sie praktischerweise das storm-word-count Projekt kopieren und anpassen. 
-- Passen Sie die Konfiguration des Kafka Spout an das neue Topic an.
+Für die Pageview Topologie können Sie praktischerweise das storm-word-count Projekt kopieren und anpassen.
+
+- Passen Sie die Konfiguration des Kafka Spout an.
 - Realisieren Sie Datenextraktion, URL-Normalisierung, Aufteilung in Stunden-Buckets und Zählerfunktion als Bolts.
 - Kombinieren Sie alle Komponenten mit passenden Stream Groupings zu einer Topologie.
 
 #### Ausführung
-Starten Sie die Topologie in der IDE. Zur Erzeugung eines Streams, kopieren Sie den Inhalt der Pageview Datei aus Aufgabe 3 per Copy/Paste in den Kafka Command Line Producer für das neue Topic.
+Starten Sie die Topologie in der IDE. Zur Erzeugung eines Streams kopieren Sie den Inhalt der Pageview Datei aus Aufgabe 3 per Copy/Paste in den Kafka Command Line Producer.
 
 ## Referenzen
 
