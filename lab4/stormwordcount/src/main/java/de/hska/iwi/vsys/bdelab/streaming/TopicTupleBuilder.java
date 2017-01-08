@@ -6,6 +6,12 @@ import org.apache.storm.tuple.Values;
 
 import java.util.List;
 
+/**
+ * Logic to build tuples from ConsumerRecords
+ *
+ * @param <K> ConsumerRecord Key Type
+ * @param <V> ConsumerRecord Value TYpe
+ */
 public class TopicTupleBuilder<K,V>  extends KafkaSpoutTupleBuilder<K,V> {
 
     /**

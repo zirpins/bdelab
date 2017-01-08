@@ -18,7 +18,7 @@ public class WordcountTopology {
 
         builder.setSpout("kafka_spout", new SentenceSpout(), 1);
 
-        builder.setBolt("split_bolt", new SplitSentenceBolt(), 3)
+        builder.setBolt("split_bolt", new SplitSentenceBolt(), 2)
                 .shuffleGrouping("kafka_spout", SentenceSpout.STREAM_NAME);
 
         builder.setBolt("count_bolt", new WordCountBolt(), 2)
@@ -31,7 +31,7 @@ public class WordcountTopology {
         StormTopology topology = buildTopology();
 
         Config conf = new Config();
-        conf.setDebug(true);
+        conf.setDebug(false);
 
         if (args != null && args.length > 0) {
             conf.setNumWorkers(3);

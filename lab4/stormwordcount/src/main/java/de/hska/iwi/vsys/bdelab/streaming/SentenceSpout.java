@@ -6,18 +6,21 @@ import org.apache.storm.tuple.Fields;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.apache.storm.kafka.spout.KafkaSpoutConfig.FirstPollOffsetStrategy.EARLIEST;
-import static org.apache.storm.kafka.spout.KafkaSpoutRetryExponentialBackoff.TimeInterval.microSeconds;
-import static org.apache.storm.kafka.spout.KafkaSpoutRetryExponentialBackoff.TimeInterval.milliSeconds;
-import static org.apache.storm.kafka.spout.KafkaSpoutRetryExponentialBackoff.TimeInterval.seconds;
+import static org.apache.storm.kafka.spout.KafkaSpoutRetryExponentialBackoff.TimeInterval.*;
 
 class SentenceSpout extends KafkaSpout<String, String> {
+
+    /**
+     * Properties defining consumer connection to Kafka broker
+     *
+     * @see <a href="http://kafka.apache.org/090/javadoc/index.html?org/apache/kafka/clients/consumer/KafkaConsumer.html">KafkaConsumer</a>
+     */
     private static Map<String, Object> props;
     static {
         props = new HashMap<>();
-        props.put(KafkaSpoutConfig.Consumer.ENABLE_AUTO_COMMIT, "true");
+        props.put(KafkaSpoutConfig.Consumer.ENABLE_AUTO_COMMIT, "false");
         props.put(KafkaSpoutConfig.Consumer.BOOTSTRAP_SERVERS, "127.0.0.1:9092");
-        props.put(KafkaSpoutConfig.Consumer.GROUP_ID, "kafkaSpoutGroup");
+        props.put(KafkaSpoutConfig.Consumer.GROUP_ID, "kafkaSentenceSpoutGroup");
         props.put(KafkaSpoutConfig.Consumer.KEY_DESERIALIZER, "org.apache.kafka.common.serialization.StringDeserializer");
         props.put(KafkaSpoutConfig.Consumer.VALUE_DESERIALIZER, "org.apache.kafka.common.serialization.StringDeserializer");
     }
@@ -41,7 +44,7 @@ class SentenceSpout extends KafkaSpout<String, String> {
     private static KafkaSpoutConfig<String, String> config = new KafkaSpoutConfig
             .Builder<>(props, streams, tuplesBuilder, retryService)
             .setOffsetCommitPeriodMs(10000)
-            .setFirstPollOffsetStrategy(EARLIEST)
+            .setFirstPollOffsetStrategy(KafkaSpoutConfig.FirstPollOffsetStrategy.EARLIEST)
             .setMaxUncommittedOffsets(250)
             .build();
 
