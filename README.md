@@ -164,7 +164,7 @@ MapReduce Jobs können ihre Daten aus vielen Quellen beziehen. Die Klasse `Count
 Um zunächst eine Datenbasis zu erstellen, kann die Klasse `Batchloader` als Java Anwendung gestartet werden (am einfachsten in Eclipse). Der `Batchloader` liest Pageviews aus einer Textdatei und schreibt sie in einen Pail. Dann kann der Job gestartet werden:
 ```
 su - hadoop
-hadoop jar ~vislab/git/bdelab/lab2/target/bdelab2-0.0.1-SNAPSHOT-jar-with-dependencies.jar de.hska.iwi.bdelab.batchjobs.CountFakts
+hadoop jar ~vislab/git/bdelab/lab2/target/bdelab2-0.0.1-SNAPSHOT-jar-with-dependencies.jar de.hska.iwi.bdelab.batchjobs.CountFacts
 ```
 
 Das Ergebnis findet sich im Anschluss im HDFS:
