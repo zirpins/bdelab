@@ -1,7 +1,6 @@
 package de.hska.iwi.bdelab.batchstore;
 
 import static com.backtype.support.TestUtils.assertPailContents;
-import static com.backtype.support.TestUtils.getTmpPath;
 
 import org.apache.hadoop.fs.FileSystem;
 import org.junit.Before;

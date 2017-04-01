@@ -19,7 +19,7 @@ public class Batchloader {
 		try {
 			URI uri = Batchloader.class.getClassLoader().getResource(DATA_FILE).toURI();
 			try (Stream<String> stream = Files.lines(Paths.get(uri))) {
-				stream.forEach(element -> writeToPail(getDatafromString(element)));
+				stream.forEach(line -> writeToPail(getDatafromString(line)));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
