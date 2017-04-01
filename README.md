@@ -20,10 +20,10 @@ In der Aufgabe werden folgende zusätzliche Komponenten benötigt:
 - Zur Generierung von Klassen für das Datenmodell wird [Apache Thrift](https://thrift.apache.org) benötigt. Konkret muss der **Thrift Compiler** lokal installiert sein.
 - Als verteiltes Dateisystem wird Hadoop HDFS verwendet. Hierzu sollte eine einfache Hadoop Installation vorliegen. Wir verwenden zur Zeit [**Hadoop 2.7.0**](http://hadoop.apache.org/releases.html#Download).
 
-Richten Sie diese Komponenten entweder auf Ihrem Entwicklungsrechner ein, oder installieren Sie die bereitgestellte **VirtualBox Appliance** `VISLABv80`.  Im Pool liegt die Virtual Appliance lokal vor und muss für Ihren Account installiert werden.
+Richten Sie diese Komponenten entweder auf Ihrem Entwicklungsrechner ein, oder installieren Sie die bereitgestellte **VirtualBox Appliance** `VISLABv80` (oder neuer).  Im Pool liegt die Virtual Appliance lokal im Verzeichnis `/usr/local/share/vbox/` vor und muss für Ihren Account installiert werden: öffnen sie dazu die Anwendung `virtualbox` und wählen sie im Dateimenü den Befehl zum importieren einer Appliance. Wählen sie die aktuellste Version der VM.
 
 ### Lab1 Durchführung
-Melden Sie sich an der `VISLABv80` VM an und starten Sie dort Eclipse. Aktualisieren Sie das `bdelab` Projekt.
+Melden Sie sich an der `VISLABv80+` VM an und starten Sie dort Eclipse. Aktualisieren Sie das `bdelab` Projekt.
 
 ```
 cd ~vislab/git/bdelab
@@ -50,7 +50,7 @@ Die Klassen befinden sich dann im Paket `de.hska.iwi.bdelab.schema`. Die Klasse 
 - Erweitern Sie das Schema derart, dass für alle Benutzer die Besuchten Webseiten gespeichert werden können. Generieren Sie dann die Klassen mit dem Thrift Compiler.
 
 #### Datenspeicherung
-Die Faktenbasis der Social Media App wird in Dateien eines *verteilten Dateisystems* (DFS) abgelegt. Als DFS wird Hadoop HDFS verwendet. Auf der `VISLABv80` VM ist Hadoop in der Version 2.7.0 als *Single Host Cluster* für den User `hadoop` installiert. Das HDFS Subsystem wird wie folgt gestartet:
+Die Faktenbasis der Social Media App wird in Dateien eines *verteilten Dateisystems* (DFS) abgelegt. Als DFS wird Hadoop HDFS verwendet. Auf der `VISLABv80+` VM ist Hadoop in der Version 2.7.0 als *Single Host Cluster* für den User `hadoop` installiert. Das HDFS Subsystem wird wie folgt gestartet:
 
 ```
 su - hadoop
@@ -84,13 +84,13 @@ Führen Sie in der VM beide JUnit Tests zunächst lokal und dann auf HDFS aus (v
 - Verwenden Sie einen temporären Pail und einen Master Pail. Schreiben Sie die Fakten zunächst in den temporären Pail und hängen Sie diesen dann an den Master Pail an (Pail#absorb).
 
 ## Lab2: Batch Processing
-In der Aufgabe wird ein einfaches Beispiel für die Batch Verarbeitung mit MapReduce betrachtet und auf die Verarbeitung von Fakten in Pails übertragen. <!--  Optional wird dann noch JCascalog als Ansatz zur deklarativen Beschreibung von Batch Verarbeitung auf höherem Abstraktionsgrad verwendet. -->
+In der Aufgabe wird ein einfaches Beispiel für die Batch Verarbeitung mit MapReduce betrachtet und auf die Verarbeitung von Fakten in Pails übertragen.
 
 ### Lab2 Vorbereitung
-Als Plattform wird **Hadoop 2.7.0 YARN** und auf dieser Basis das **MapReduce** Framework verwendet. Die Komponenten sind auf der **VirtualBox Appliance** `VISLABv82` vorbereitet. Im Pool liegt die Virtual Appliance lokal vor und muss für Ihren Account installiert werden.
+Als Plattform wird **Hadoop 2.7.0 YARN** und auf dieser Basis das **MapReduce** Framework verwendet. Die Komponenten sind auf der **VirtualBox Appliance** `VISLABv82` (oder neuer) vorbereitet. (Im Pool liegt die Virtual Appliance lokal vor (`/usr/local/share/vbox/`) und muss für Ihren Account installiert werden: öffnen sie dazu die Anwendung `virtualbox` und wählen sie im Dateimenü den Befehl zum importieren einer Appliance. Wählen sie die aktuellste Version der VM.)
 
 ### <a name="lab2durchführung">Lab2 Durchführung</a>
-Melden Sie sich an der `VISLABv82` VM an und starten Sie dort Eclipse. Aktualisieren Sie das `bdelab` Projekt (optional bei vorhandener Netzwerkverbindung).
+Melden Sie sich an der `VISLABv82+` VM an und starten Sie dort Eclipse. Aktualisieren Sie das `bdelab` Projekt (optional bei vorhandener Netzwerkverbindung).
 
 ```
 cd ~vislab/git/bdelab
@@ -180,10 +180,10 @@ Schauen sie sich den Quelltext von `CountFacts` an. Dort sehen Sie die Konfigura
 Die Aufgabe vertieft die Verarbeitungsschritte im Batch Layer. Es wird **Cascalog** als Framework für die deklarative Erstellung komplexer MapReduce Verarbeitungsprozesse eingeführt. Auf Basis von Cascalog wird ein einfacher Batch Workflow mit Daten-Import, -Normalisierung und -Vorverarbeitung realisiert.
 
 ### Lab3 Vorbereitung
-Als Plattform wird weiterhin **Hadoop 2.7.0 YARN** verwendet. Die Umgebung ist auf der **VirtualBox Appliance** `VISLABv83` vorbereitet. Im Pool liegt die Virtual Appliance lokal vor (`/usr/local/share/...`) und muss für Ihren Account installiert werden.
+Als Plattform wird weiterhin **Hadoop 2.7.0 YARN** verwendet. Die Umgebung ist auf der **VirtualBox Appliance** `VISLABv83` (oder neuer) vorbereitet. (Im Pool liegt die Virtual Appliance lokal vor (`/usr/local/share/vbox/`) und muss für Ihren Account installiert werden: öffnen sie dazu die Anwendung `virtualbox` und wählen sie im Dateimenü den Befehl zum importieren einer Appliance. Wählen sie die aktuellste Version der VM.)
 
 ### Lab3 Durchführung
-Melden Sie sich an der `VISLABv83` VM an und starten Sie dort Eclipse. Aktualisieren Sie falls nötig das `bdelab` Projekt (siehe [Lab2 Durchführung](#lab2durchführung)). Die Aufgabe basiert auf dem Maven Projekt `bdelab3` im Ordner `bdelab/lab3`. Importieren Sie das Projekt zunächst wieder in Ihren Eclipse Workspace (falls nicht schon geschehen).
+Melden Sie sich an der `VISLABv83+` VM an und starten Sie dort Eclipse. Aktualisieren Sie falls nötig das `bdelab` Projekt (siehe [Lab2 Durchführung](#lab2durchführung)). Die Aufgabe basiert auf dem Maven Projekt `bdelab3` im Ordner `bdelab/lab3`. Importieren Sie das Projekt zunächst wieder in Ihren Eclipse Workspace (falls nicht schon geschehen).
 
 #### Cascalog
 Cascalog ist ein Framework zur deklarativen Beschreibung komplexer Abfragen, die als MapReduce Programme auf einem Hadoop YARN Cluster ausgeführt werden können. Cascalog ist in *Clojure* geschrieben, wir verwenden die zugehörige Java API **JCascalog** zur Programmierung von Cascalog Anfragen in Java.
@@ -236,12 +236,12 @@ Insbesondere können Kafka *Topics* als Multi-Consumer-Queues genutzt werden, be
 Die Semantik von Kafka Topics passt optimal zur Stream-Verarbeitung in Storm und wird dort zur garantierten Verarbeitung (at-least-once) von Nachrichten verwendet.
 
 ### Lab4 Vorbereitung
-Als Infrastruktur benötigen wir nur **Kafka 0.9+** (für Storm nutzen wir einen eingebetteten "Cluster"). Die Umgebung ist auf der **VirtualBox Appliance** `VISLABv84` vorbereitet. Im Pool liegt die Virtual Appliance lokal vor (`/usr/local/share/...`) und muss für Ihren Account installiert werden.
+Als Infrastruktur benötigen wir nur **Kafka 0.9+** (für Storm nutzen wir einen eingebetteten "Cluster"). Die Umgebung ist auf der **VirtualBox Appliance** `VISLABv84` (oder neuer) vorbereitet. (Im Pool liegt die Virtual Appliance lokal vor (`/usr/local/share/vbox/`) und muss für Ihren Account installiert werden: öffnen sie dazu die Anwendung `virtualbox` und wählen sie im Dateimenü den Befehl zum importieren einer Appliance. Wählen sie die aktuellste Version der VM.)
 
 Kafka kann aber auch sehr leicht selbst installiert werden (siehe [Kafka Quickstart](http://kafka.apache.org/quickstart)).
 
 ### Lab4 Durchführung
-Melden Sie sich an der `VISLABv84` VM an und starten Sie dort Eclipse. Aktualisieren Sie falls nötig das `~vislab/git/bdelab` Projekt (siehe [Lab2 Durchführung](#lab2durchführung)). Die Aufgabe basiert auf dem Maven Projekt `storm-word-count` im Ordner `~vislab/git/bdelab/lab4/stormwordcount`. Importieren Sie das Projekt zunächst wieder in Ihren Eclipse Workspace (falls nicht schon geschehen).
+Melden Sie sich an der `VISLABv84+` VM an und starten Sie dort Eclipse. Aktualisieren Sie falls nötig das `~vislab/git/bdelab` Projekt (siehe [Lab2 Durchführung](#lab2durchführung)). Die Aufgabe basiert auf dem Maven Projekt `storm-word-count` im Ordner `~vislab/git/bdelab/lab4/stormwordcount`. Importieren Sie das Projekt zunächst wieder in Ihren Eclipse Workspace (falls nicht schon geschehen).
 
 ### Aufgabe 4.1
 Probieren Sie das Wordcount Beispiel aus. Hierzu muss zunächst Kafka vorbereitet werden, danach kann die Storm Topology zur Ausführung kommen.
@@ -254,7 +254,7 @@ Das schnelle Aufsetzen von Kafka wird in [Kafka Quickstart](http://kafka.apache.
 - ...starten Sie einen **Producer** für `sentence`
 - ...testen Sie das Topic mit einem **Consumer**
 
-Auf `VISLABv84` ist Kafka im Verzeichnis `~vislab/lib/kafka_2.11-0.10.1.0` installiert.
+Auf `VISLABv84+` ist Kafka im Verzeichnis `~vislab/lib/kafka_2.11-0.10.1.0` installiert.
 
 #### Storm Topologie ausführen
 Öffnen Sie das *storm-word-count Projekt* in Ihrer IDE. `WordcountTopology` ist im Package `de.hska.iwi.vsys.bdelab.streaming` spezifiziert. Die Topologie nutzt [storm-kafka-client](https://github.com/apache/storm/tree/v1.0.2/external/storm-kafka-client) zur Definition des `SentenceSpout` (als *Consumer* des Kafka Topics `sentence`).
