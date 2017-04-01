@@ -8,7 +8,7 @@ Die Aufgaben können auf Rechnern im Pool LI 137 oder auf dem eigenen Laptop bea
 
 - Alle Aufgaben basieren auf Java. Hierzu wird eine Entwicklungsumgebung mit [**Java 1.7+ SDK**](http://www.oracle.com/technetwork/java/javase/downloads/index.html), [**Eclipse JEE**](https://www.eclipse.org/downloads/eclipse-packages/) , [**Maven**](https://maven.apache.org/install.html), und [**Git**](https://help.github.com/articles/set-up-git/) benötigt. Diese Umgebung sollte lokal und nativ auf dem Entwicklungsrechner vorliegen.
 
-- In den meisten Aufgaben wird eine **virtualisierte Umgebung** für spezielle Tools und Plattformen bereitgestellt. Aktuell werden zur Virtualisierung [**VirtualBox**](https://www.virtualbox.org) und z.T. [**Vagrant**](https://www.vagrantup.com) verwendet und sollte auf dem Entwicklungsrechner zur Verfügung stehen.
+- In den meisten Aufgaben wird eine **virtualisierte Umgebung** mit speziellen Tools und Plattformen bereitgestellt. Aktuell werden zur Virtualisierung [**VirtualBox**](https://www.virtualbox.org) und z.T. [**Vagrant**](https://www.vagrantup.com) verwendet. Diese Virtualisierungswerkzeuge sollten auf dem Entwicklungsrechner zur Verfügung stehen.
 
 ## Lab1: Batch Storage
 In der Aufgabe wird...
@@ -186,7 +186,7 @@ Als Plattform wird weiterhin **Hadoop 2.7.0 YARN** verwendet. Die Umgebung ist a
 Melden Sie sich an der `VISLABv83` VM an und starten Sie dort Eclipse. Aktualisieren Sie falls nötig das `bdelab` Projekt (siehe [Lab2 Durchführung](#lab2durchführung)). Die Aufgabe basiert auf dem Maven Projekt `bdelab3` im Ordner `bdelab/lab3`. Importieren Sie das Projekt zunächst wieder in Ihren Eclipse Workspace (falls nicht schon geschehen).
 
 #### Cascalog
-Cascalog ist ein Framework zur deklarativen Beschreibung komplexer Abfragen, die als MapReduce Programme auf einem Hadoop YARN Cluster ausgeführt werden können. Cascalog ist in *Clojure* geschrieben, wir verwenden die zugehörige Java API **JCascalog** zur Programmierung von Cascalog Anfragen in Java. 
+Cascalog ist ein Framework zur deklarativen Beschreibung komplexer Abfragen, die als MapReduce Programme auf einem Hadoop YARN Cluster ausgeführt werden können. Cascalog ist in *Clojure* geschrieben, wir verwenden die zugehörige Java API **JCascalog** zur Programmierung von Cascalog Anfragen in Java.
 
 Eine praktische Einführung in die wichtigsten und für die Aufgabe notwendigen Grundlagen liegt als kurzer Foliensatz vor. Weitere [Cascalog Dokumentation](https://github.com/nathanmarz/cascalog/wiki/JCascalog) findet sich im Web.
 
@@ -225,13 +225,13 @@ Mit dieser Konfiguration untersuchen wir zunächst das *Beispiel einer einfachen
 ### Lab4 Hintergrund
 [Apache Storm](http://storm.apache.org/) realisiert eine Plattform für One-at-a-Time (und Micro-batched) Stream Verarbeitung in Cluster-Umgebungen. Verarbeitungsprozesse werden durch *Topologien* aus *Spouts* und *Bolts* spezifiziert, die vom zentralen *Nimbus* als *Tasks* auf verschiedene *Worker* Knoten eines Clusters verteilt werden (siehe [Apache Storm Concepts](http://storm.apache.org/releases/1.0.2/Concepts.html)).
 
-Wir nutzen eine Möglichkeit von Storm aus, Topologien auch ohne verteilte Infrastruktur auf einem `LocalCluster` innerhalb eines Java Prozesses auszuführen (siehe [Apache Storm Local Mode](http://storm.apache.org/releases/1.0.2/Local-mode.html)). 
+Wir nutzen eine Möglichkeit von Storm aus, Topologien auch ohne verteilte Infrastruktur auf einem `LocalCluster` innerhalb eines Java Prozesses auszuführen (siehe [Apache Storm Local Mode](http://storm.apache.org/releases/1.0.2/Local-mode.html)).
 
 Solche Streaming Prozesse können leicht als Java Anwendungen aus einer IDE wie Eclipse oder IntelliJ gestartet werden.
 
 [Apache Kafka](http://kafka.apache.org/) stellt eine performante Infrastruktur für die Verwaltung, Speicherung und Verarbeitung von Datenströmen bereit. Kafka kann u.a. replizierte und partitionierte Message Queues bereitstellen.
 
-Insbesondere können Kafka *Topics* als Multi-Consumer-Queues genutzt werden, bei denen *Records*, bestehend aus *Name* und *Value* für verschiedene Streaming Prozesse (ConsumerGroups) genutzt und bei Bedarf gemäß ihrer Position wiederholt werden können (siehe [Apache Kafka Intro](http://kafka.apache.org/intro)). 
+Insbesondere können Kafka *Topics* als Multi-Consumer-Queues genutzt werden, bei denen *Records*, bestehend aus *Name* und *Value* für verschiedene Streaming Prozesse (ConsumerGroups) genutzt und bei Bedarf gemäß ihrer Position wiederholt werden können (siehe [Apache Kafka Intro](http://kafka.apache.org/intro)).
 
 Die Semantik von Kafka Topics passt optimal zur Stream-Verarbeitung in Storm und wird dort zur garantierten Verarbeitung (at-least-once) von Nachrichten verwendet.
 
@@ -243,11 +243,11 @@ Kafka kann aber auch sehr leicht selbst installiert werden (siehe [Kafka Quickst
 ### Lab4 Durchführung
 Melden Sie sich an der `VISLABv84` VM an und starten Sie dort Eclipse. Aktualisieren Sie falls nötig das `~vislab/git/bdelab` Projekt (siehe [Lab2 Durchführung](#lab2durchführung)). Die Aufgabe basiert auf dem Maven Projekt `storm-word-count` im Ordner `~vislab/git/bdelab/lab4/stormwordcount`. Importieren Sie das Projekt zunächst wieder in Ihren Eclipse Workspace (falls nicht schon geschehen).
 
-### Aufgabe 4.1 
+### Aufgabe 4.1
 Probieren Sie das Wordcount Beispiel aus. Hierzu muss zunächst Kafka vorbereitet werden, danach kann die Storm Topology zur Ausführung kommen.
 
 #### Kafka Wordcount Topic und Producer aufsetzen
-Das schnelle Aufsetzen von Kafka wird in [Kafka Quickstart](http://kafka.apache.org/quickstart) beschrieben. Folgen Sie dieser Anleitung und 
+Das schnelle Aufsetzen von Kafka wird in [Kafka Quickstart](http://kafka.apache.org/quickstart) beschrieben. Folgen Sie dieser Anleitung und
 - ...starten sie den **Zookeeper Server**
 - ...starten Sie den **Kafka Server**
 - ...richten Sie ein **Topic** `sentence` ein
@@ -263,7 +263,7 @@ Starten Sie `WordcountTopology` als Java-Anwendung in der IDE. Geben Sie nun ein
 
 Versuchen Sie, die Implementierung der Topologie mit Spout und Bolts nachzuvollziehen.
 
-### Aufgabe 4.2 
+### Aufgabe 4.2
 Die eigentliche Aufgabe besteht nun darin, die Berechnung des Pageview-pro-Zeit Index als Storm Topologie zu implementieren.
 
 #### Kafka vorbereiten
@@ -271,7 +271,7 @@ Legen Sie zunächst ein passendes Kafka Topic für Pageview Ereignisse an. Gehen
 
 ```
 <IP> <URL> <EPOCH-TIME>
-``` 
+```
 
 (siehe Datei `pageviews2.txt` aus bdelab3).
 
