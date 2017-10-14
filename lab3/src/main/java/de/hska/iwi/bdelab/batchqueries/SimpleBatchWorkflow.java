@@ -99,8 +99,9 @@ public class SimpleBatchWorkflow extends QueryBase {
 
 		// first query part aggregates views by url and hour
 		Subquery hourlyRollup = new Subquery("?url", "?hour-bucket", "?hour-count")
-				.predicate(normalizedByUrl, "_", "?fact").predicate(new ExtractPageViewFields(), "?fact")
-				.out("?url", "?time").predicate(new ToHour(), "?time").out("?hour-bucket")
+				.predicate(normalizedByUrl, "_", "?fact")
+				.predicate(new ExtractPageViewFields(), "?fact").out("?url", "?time")
+				.predicate(new ToHour(), "?time").out("?hour-bucket")
 				.predicate(new jcascalog.op.Count(), "?hour-count")
 				.predicate(new Debug(), "?url", "?hour-bucket", "?hour-count").out("?one");
 
