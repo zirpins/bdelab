@@ -65,7 +65,3 @@ Für die Pageview Topologie können Sie praktischerweise das storm-word-count Pr
 
 ### Ausführung
 Starten Sie die Topologie in der IDE. Zur Erzeugung eines Streams kopieren Sie den Inhalt der Pageview Datei aus Aufgabe 3 per Copy/Paste in den Kafka Command Line Producer.
-
-# Referenzen
-
-[1] Nathan Marz, James Warren, "Big Data: Principles and best practices of scalable realtime data systems", Manning, 2015
