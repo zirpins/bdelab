@@ -1,4 +1,4 @@
-# Aufgabe 1: Batch Storage TODO 1.2 Datenspeicherung Pfad anpassen und dfs-datastores
+# Aufgabe 1: Batch Storage
 In der Aufgabe wird...
 1. ...die Faktenbasis des Batch Layers als *Graph Schema* modelliert und mithilfe von *Apache Thrift* implementiert und
 2. ...die physikalische Speicherung von Fakten auf *Hadoop HDFS* mit dem *dfs-datastore* Framework implementiert.
@@ -9,12 +9,10 @@ In der Aufgabe werden folgende zusätzliche Komponenten  benötigt:
 - Als verteiltes Dateisystem wird Hadoop HDFS verwendet.
 
 ## Lab1 Durchführung
-Aktualisieren Sie das `bdelab` Projekt.
+Klonen Sie das `bdelab` Projekt.
 
 ```
-cd ~vislab/git/bdelab
-git pull
-cd lab1
+git clone https://github.com/zirpins/bdelab.git
 ```
 
 Die Aufgabe basiert auf dem Maven Projekt `bdelab1` im Ordner `bdelab/lab1`. Importieren Sie das Projekt zunächst in Ihren Eclipse Workspace (falls nicht schon geschehen).
@@ -23,7 +21,7 @@ Die Aufgabe basiert auf dem Maven Projekt `bdelab1` im Ordner `bdelab/lab1`. Imp
 Das Projekt `bdelab1` realisiert einen unveränderbaren Speicher für die Fakten einer einfachen **Social Media App**. Die Struktur der Fakten ist durch das Schema `src/main/thrift/schema.thrift` gegeben. Die Klassen für das Schema werden mit folgendem Skript generiert:
 
 ```
-cd ~vislab/git/bdelab/lab1
+cd bdelab/lab1
 ./genthrift.sh
 ```
 
@@ -38,11 +36,10 @@ Die Klassen befinden sich dann im Paket `de.hska.iwi.bdelab.schema`. Die Klasse 
 ### Datenspeicherung
 Die Faktenbasis der Social Media App wird in Dateien eines *verteilten Dateisystems* (DFS) abgelegt. Als DFS wird Hadoop HDFS verwendet.
 
-TODO
 WIe folgt gezeigt können die [Hadoop Skripte](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/CommandsManual.html) verwendet werden, um z.B. das Dateisystem zu untersuchen:
 
 ```
-/usr/local/opt/hadoop-2.7.3/bin/hadoop fs -ls /path/to/your/space
+/usr/local/opt/hadoop-2.7.3/bin/hadoop fs -ls /path
 ```
 
 Eine einfache Web GUI ist unter [http://iwi-lkit-ux-06.hs-karlsruhe.de:50070](http://iwi-lkit-ux-06.hs-karlsruhe.de:50070) verfügbar.
@@ -51,13 +48,11 @@ Um nicht direkt mit der generischen FileSystem API arbeiten zu müssen, wird das
 
 Als Dokumentation der Pail API dienen die Tests des Projekts (eine gute Einführung findet sich in [1]). Es ist daher (optional) empfehlenswert, das dfs-datastores Projekt als Referenz herunterzuladen. Allerdings basiert es auf dem [Leiningen Build Tool](http://leiningen.org) von Clojure und kann nur mit dem [Counterclockwise Plugin](http://doc.ccw-ide.org) in Eclipse importiert werden.
 
-TODO THINK DOWNLOAD dfs-datastores
+dfs-datastores
 
 Das `bdelab1` Projekt enthält zwei JUnit Testfälle `FactsIOTest.java` zur Speicherung von Fakten in Pails und `FactsOpsTests.java` um neue Fakten an eine bestehende Basis anzuhängen. Hierzu wird eine Erweiterung von Pail verwendet, die zur Serialisierung die generierten Thrift Klassen nutzt. Die entsprechenden Pail Strukturen (u.a. `ThriftPailStructure.java` und `DataPailStructure.java`) sind im Paket `manning.tap` enthalten. In den Testklassen kann mit der Konstanten `LOCAL` (Default ist `true`) zwischen lokalem und verteiltem Dateisystem umgeschaltet werden.
 
 Führen Sie beide JUnit Tests zunächst lokal und dann auf HDFS aus.
-
-THINK END
 
 #### Aufgabe 1.3 (Pail HDFS Dateien)
 - Suchen Sie im HDFS diejenigen Dateien, die durch die Pails aus den Testfällen geschrieben wurden.
