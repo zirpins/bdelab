@@ -30,9 +30,7 @@ public class FileUtils {
 			if (!local) {
 				conf.addResource(new Path("/usr/local/opt/hadoop-2.7.3/etc/hadoop/core-site.xml"));
 				conf.addResource(new Path("/usr/local/opt/hadoop-2.7.3/etc/hadoop/hdfs-site.xml"));
-
-				// change last parameter to your IZ account ID
-				fs = FileSystem.get(URI.create("hdfs://193.196.105.68:9000/" + HDFS_BASE), conf, "abcd1234");
+				fs = FileSystem.get(URI.create("hdfs://193.196.105.68:9000/" + HDFS_BASE), conf, USERID);
 			} else {
 				fs = FileSystem.getLocal(conf);
 			}
