@@ -17,8 +17,7 @@ import manning.tap.DataPailStructure;
 import manning.tap.SplitDataPailStructure;
 
 public class FactsIOTest {
-
-	public final static boolean LOCAL = true;
+	private final boolean LOCAL = true;
 
 	private FileSystem fs;
 
@@ -29,7 +28,7 @@ public class FactsIOTest {
 
 	@Test
 	public void testStructureConstructor() throws Exception {
-		String path = FileUtils.getTmpPath(fs, "friends_pail1", LOCAL);
+		String path = FileUtils.getTmpPath(fs, "friends_pail1", true, LOCAL);
 		Pail p = Pail.create(fs, path, new DataPailStructure());
 		PailSpec spec = p.getSpec();
 		assertNotNull(spec.getName());
@@ -38,7 +37,7 @@ public class FactsIOTest {
 
 	@Test
 	public void testStructured() throws Exception {
-		String path = FileUtils.getTmpPath(fs, "friends_pail2", LOCAL);
+		String path = FileUtils.getTmpPath(fs, "friends_pail2", true, LOCAL);
 
 		Pail<Data> pail = Pail.create(fs, path,
 				PailFormatFactory.getDefaultCopy().setStructure(new DataPailStructure()));
@@ -55,7 +54,7 @@ public class FactsIOTest {
 
 	@Test
 	public void testStructuredWithPartotions() throws Exception {
-		String path = FileUtils.getTmpPath(fs, "friends_pail3", LOCAL);
+		String path = FileUtils.getTmpPath(fs, "friends_pail3", true, LOCAL);
 
 		Pail<Data> pail = Pail.create(fs, path,
 				PailFormatFactory.getDefaultCopy().setStructure(new SplitDataPailStructure()));

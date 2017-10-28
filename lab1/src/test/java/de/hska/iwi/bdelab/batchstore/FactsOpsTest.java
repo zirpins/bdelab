@@ -13,8 +13,7 @@ import de.hska.iwi.bdelab.schema.Data;
 import manning.tap.DataPailStructure;
 
 public class FactsOpsTest {
-
-	public final static boolean LOCAL = true;
+	private final boolean LOCAL = true;
 
 	private FileSystem fs;
 
@@ -25,8 +24,8 @@ public class FactsOpsTest {
 
 	@Test
 	public void basicAppendTest() throws Exception {
-		String path1 = FileUtils.getTmpPath(fs, "pail", LOCAL);
-		String path2 = FileUtils.getTmpPath(fs, "pail2", LOCAL);
+		String path1 = FileUtils.getTmpPath(fs, "pail", true, LOCAL);
+		String path2 = FileUtils.getTmpPath(fs, "pail2", true, LOCAL);
 		// test non structured append
 		Pail<Data> p1 = Pail.create(fs, path1, new DataPailStructure());
 		Pail<Data> p2 = Pail.create(fs, path2, new DataPailStructure());

@@ -12,7 +12,7 @@ import de.hska.iwi.bdelab.schema.Data;
 public class Batchloader {
 
 	private final String DATA_FILE = "pageviews.txt";
-	
+
 	// ...
 
 	private void readPageviewsAsStream() {
@@ -46,8 +46,8 @@ public class Batchloader {
 	private void writeToPail(Data data) {
 		// ...
 	}
-	
-	private void importPageviews() {		
+
+	private void importPageviews() {
 		// ...
 		readPageviewsAsStream();
 		// ...
