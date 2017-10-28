@@ -32,7 +32,7 @@ cd bdelab/lab1
 Die Klassen befinden sich dann im Paket `de.hska.iwi.bdelab.schema`. Die Klasse `de.hska.iwi.bdelab.batchstore.FriendFacts` in `src/test/java` instanziiert einige Objekte des Schemas. In diesem Beispiel können sie die Verwendung der generierten Thrift Klassen sehen.
 
 #### Aufgabe 1.1.1 (Graph Schema)
-- Skizzieren Sie das Graph Schema der gegebenen Social Media Anwendung. Sie können sich dazu beliebige Fakten als Beispiele ausdenken, es sollten am Ende Beispiele für alle Eigenschaften und Beziehungen aaler Entitäten zu sehen sein. 
+- Skizzieren Sie das Graph Schema der gegebenen Social Media Anwendung. Sie können sich dazu beliebige Fakten als Beispiele ausdenken, es sollten am Ende Beispiele für alle Eigenschaften und Beziehungen aller Entitäten zu sehen sein. 
 
 #### Aufgabe 1.1.2 (Thrift API)
 - Erweitern Sie das Schema derart, dass für alle Benutzer die Besuchten Webseiten gespeichert werden können. Sie benötigen dazu weitere Entitäten und Beziehungen. Sichern sie die Identität von Seitenbesuch-Fakten durch ein "Nonce" ab. 
