@@ -16,6 +16,8 @@ Auf den Rechnern im LKIT Cluster ist diese Umgebung direkt verfügbar.
 Klonen Sie das `bdelab` Projekt.
 
 ```
+mkdir -p ~/git
+cd ~/git
 git clone https://github.com/zirpins/bdelab.git
 ```
 
@@ -25,7 +27,7 @@ Die Aufgabe basiert auf dem Maven Projekt `bdelab1` im Ordner `bdelab/lab1`. Imp
 Das Projekt `bdelab1` realisiert einen unveränderbaren Speicher für die Fakten einer einfachen **Social Media App**. Die Struktur der Fakten ist durch das Schema `src/main/thrift/schema.thrift` gegeben. Die Klassen für das Schema werden mit folgendem Skript generiert:
 
 ```
-cd bdelab/lab1
+cd ~/git/bdelab/lab1
 ./genthrift.sh
 ```
 
@@ -62,7 +64,12 @@ Als Dokumentation der Pail API dienen die **Tests** des Projekts (eine gute Einf
 
 Das `bdelab1` Projekt enthält zwei JUnit Testfälle `FactsIOTest.java` zur Speicherung von Fakten in Pails und `FactsOpsTests.java` um neue Fakten an eine bestehende Basis anzuhängen. Hierzu wird eine Erweiterung von Pail verwendet, die zur Serialisierung die generierten Thrift Klassen nutzt. Die entsprechenden Pail Strukturen (u.a. `ThriftPailStructure.java` und `DataPailStructure.java`) sind im Paket `manning.tap` enthalten. In den Testklassen kann mit der Konstanten `LOCAL` (Default ist `true`) zwischen lokalem und verteiltem Dateisystem umgeschaltet werden.
 
-Führen Sie beide JUnit Tests zunächst lokal und dann auf HDFS aus. Dazu können sie im Verzeichnis `lab1` den Befehl `mvn test` verwenden.
+Führen Sie beide JUnit Tests zunächst lokal und dann auf HDFS aus:
+
+```
+cd ~/git/bdelab/lab1
+mvn test
+```
 
 #### Aufgabe 1.2.1 (Pail HDFS Dateien)
 - Suchen Sie im HDFS diejenigen Dateien, die durch die Pails aus den Testfällen geschrieben wurden.
@@ -73,6 +80,22 @@ Führen Sie beide JUnit Tests zunächst lokal und dann auf HDFS aus. Dazu könne
 - Sie sollen nun Pail zum Import von neuen Fakten aus der lokalen Datei `pageviews.txt` im Ordner `lab1/src/main/resources` verwenden.
 - Stellen Sie dazu die Klasse `Batchloader` im Paket `de.hska.iwi.bdelab.batchstore` fertig. Hier ist der Code zum Einlesen der Datei schon fertig. Es fehlt das Erstellen von Fakten und das Schreiben in Pails.
 - Verwenden Sie einen temporären Pail und einen Master Pail. Schreiben Sie die Fakten zunächst in den temporären Pail und hängen Sie diesen dann an den Master Pail an (Pail#absorb).
+
+Bauen und Starten der Anwendung
+
+- Zum Bauen der Anwendung kann Maven verwendet werden.
+
+```
+cd bdelab/lab1
+mvn package
+```
+
+- Die Anwendung wird über das `hadoop` Skript gestartet.
+
+```
+cd bdelab/lab1/target
+hadoop jar bdelab1-0.0.1-SNAPSHOT-jar-with-dependencies.jar de.hska.iwi.bdelab.batchstore.Batchloader
+```
 
 # Referenzen
 [1] Nathan Marz, James Warren, "Big Data: Principles and best practices of scalable realtime data systems", Manning, 2015
