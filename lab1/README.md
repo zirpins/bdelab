@@ -86,14 +86,14 @@ Bauen und Starten der Anwendung
 - Zum Bauen der Anwendung kann Maven verwendet werden.
 
 ```
-cd bdelab/lab1
+cd ~/git/bdelab/lab1
 mvn package
 ```
 
 - Die Anwendung wird über das `hadoop` Skript gestartet.
 
 ```
-cd bdelab/lab1/target
+cd ~/git/bdelab/lab1/target
 hadoop jar bdelab1-0.0.1-SNAPSHOT-jar-with-dependencies.jar de.hska.iwi.bdelab.batchstore.Batchloader
 ```
 
