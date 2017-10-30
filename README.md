@@ -50,3 +50,22 @@ In Hadoop gibt es einige Web-basierte Werkzeuge. Die folgenden Links funktionier
 
 - Die **YARN Web UI** dient zur Beobachtung von MapReduce und anderen YARN Jobs.
     - [LKIT YARN Web UI](http://iwi-lkit-ux-06.hs-karlsruhe.de:8088)
+
+### Anmeldung am Cluster von Remote per VPN und SSH
+
+Falls Sie die Laboraufgaben nicht im LKIT bearbeiten möchten, können Sie dies per VPN und SSH auch von Remote durchführen.
+
+1) Öffnen Sie Ihre VPN Verbindung zum Hochschulnetz (Server: vpn.hs-karlsruhe.de)
+2) Öffnen Sie eine Konsole und öffnen Sie eine SSH Verbindung zum Login Server der Hochschule.
+
+```
+ssh <IZ-Name>@login.hs-karlsruhe.de
+```
+
+3) Vom Login Server aus können Sie sich nun wiederrum mittels SSH auf einem beliebigen LKIT Knoten einwählen.
+
+```
+ssh <IZ-Name>@iwi-lkit3-<Range-Number>.hs-karlsruhe.de
+```
+
+Hierbei ist zu beachten das sich <Range-Number> zwischen 01-20 befindet.
