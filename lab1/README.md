@@ -62,6 +62,8 @@ Als Dokumentation der Pail API dienen die **Tests** des Projekts (eine gute Einf
 
 #### Vorbereitung
 
+Passen Sie die Datei FileUtils.java in de.hska.iwi.bdelab.batchstore mit Ihrer IZ-Account ID entsprechend an.
+
 Das `bdelab1` Projekt enthält zwei JUnit Testfälle `FactsIOTest.java` zur Speicherung von Fakten in Pails und `FactsOpsTests.java` um neue Fakten an eine bestehende Basis anzuhängen. Hierzu wird eine Erweiterung von Pail verwendet, die zur Serialisierung die generierten Thrift Klassen nutzt. Die entsprechenden Pail Strukturen (u.a. `ThriftPailStructure.java` und `DataPailStructure.java`) sind im Paket `manning.tap` enthalten. In den Testklassen kann mit der Konstanten `LOCAL` (Default ist `true`) zwischen lokalem und verteiltem Dateisystem umgeschaltet werden.
 
 Führen Sie beide JUnit Tests zunächst lokal und dann auf HDFS aus:
