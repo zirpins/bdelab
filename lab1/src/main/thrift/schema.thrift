@@ -1,7 +1,7 @@
 namespace java de.hska.iwi.bdelab.schema
 
 union UserID {
-  1: i64 user_id;
+  1: string user_id;
 }
 
 enum GenderType {
