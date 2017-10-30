@@ -68,4 +68,4 @@ ssh <IZ-Name>@login.hs-karlsruhe.de
 ssh <IZ-Name>@iwi-lkit3-<Range-Number>.hs-karlsruhe.de
 ```
 
-Hierbei ist zu beachten das sich <Range-Number> zwischen 01-20 befindet.
+Hierbei ist zu beachten, dass sich Range-Number zwischen 01-20 befindet.
