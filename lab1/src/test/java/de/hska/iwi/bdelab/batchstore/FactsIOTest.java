@@ -17,7 +17,7 @@ import manning.tap.DataPailStructure;
 import manning.tap.SplitDataPailStructure;
 
 public class FactsIOTest {
-	private final boolean LOCAL = true;
+	private final boolean LOCAL = false;
 
 	private FileSystem fs;
 

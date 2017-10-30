@@ -13,7 +13,7 @@ import de.hska.iwi.bdelab.schema.Data;
 import manning.tap.DataPailStructure;
 
 public class FactsOpsTest {
-	private final boolean LOCAL = true;
+	private final boolean LOCAL = false;
 
 	private FileSystem fs;
 

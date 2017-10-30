@@ -30,8 +30,8 @@ public class FriendFacts {
 	public static Data d3 = new Data();
 
 	static {
-		uid1.set_user_id(1L);
-		uid2.set_user_id(2L);
+		uid1.set_user_id("123");
+		uid2.set_user_id("321");
 		upv1.set_full_name("alice");
 		upv2.set_full_name("bob");
 		up1.set_property(upv1);
