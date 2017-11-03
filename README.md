@@ -69,3 +69,11 @@ ssh <IZ-Name>@iwi-lkit3-<Range-Number>.hs-karlsruhe.de
 ```
 
 Hierbei ist zu beachten, dass sich Range-Number zwischen 01-20 befindet.
+
+#### Alternative: Einbindung eines Remote Windows 10 Rechners in den Cluster
+
+Folgender Gist beschreibt, wie die Hadoop Anwendungen der Laborübungen auf einem entfernten Windows 10 Rechner gestartet werden können und von dort auf den LKIT-Cluster zugreifen: 
+
+[https://gist.github.com/SheepSays/b96397ea6d93738e47304e7a129f15a0](https://gist.github.com/SheepSays/b96397ea6d93738e47304e7a129f15a0)
+
+Dies funktioniert z.B. vom Windows Rechner zuhause mit VPN Verbindung zur Hochschule.
