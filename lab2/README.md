@@ -94,7 +94,7 @@ Generieren sie ein paar Clicks (z.B. 10.000.000 (knapp 1GB), bitte zunächst nic
 Dann kann der Job gestartet werden:
 
 ```
-hadoop jar ~vislab/git/bdelab/lab2/target/bdelab2-0.0.1-SNAPSHOT-jar-with-dependencies.jar de.hska.iwi.bdelab.batchjobs.CountFacts
+hadoop jar ~/git/bdelab/lab2/target/bdelab2-0.0.1-SNAPSHOT-jar-with-dependencies.jar de.hska.iwi.bdelab.batchjobs.CountFacts
 ```
 
 Das Ergebnis findet sich im Anschluss im HDFS:
