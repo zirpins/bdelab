@@ -33,6 +33,7 @@ Vor der Verwendung muss das Projekt mit maven erstellt werden:
 
 ```
 cd ~/git/bdelab/lab2 # bzw eigener Pfad
+./genthrift.sh # Thrift Klassen für Aufgabe 2.2 generieren
 mvn package
 ```
 
