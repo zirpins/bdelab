@@ -105,8 +105,17 @@ hadoop fs -cat /user/<IZ-Name>/bdetmp/fact-count/part-00000
 
 Schauen sie sich den Quelltext von `CountFacts` an. Dort sehen Sie die Konfiguration des Jobs zur Verwendung des Pails. Beachten Sie auch den Mapper: Hier werden die eingehenden Bytes mit dem generierten Thrift Serializer in Data Objekte gewandelt und können in der map Funktion verarbeitet werden.
 
-**Aufgabe:** berechnen sie einen Pageview Index als MapReduce Job. 
+Öffnen Sie in einem Browser die [LKIT YARN Web UI](http://iwi-lkit-ux-06.hs-karlsruhe.de:8088) und suchen Sie ihren job in der Liste.
+
+##### Aufgabe 2.1.1: implementieren sie die Vorberechnung eines Pageview Index als MapReduce Job
 
 - Der Index soll für alle vorkommenden Stundenintervalle die Anzahl der Aufrufe einzelner Seiten zählen.
 - Die Ausgabe soll als Textdatei der Form `<Datum/Stunde> <URL> <Anzahl der Aufrufe>` erfolgen.
 - Orientieren Sie sich dafür am `CountFacts` Job.
+- Erhöhen Sie die Anzahl der Reducer.
+
+##### Aufgabe 2.1.2: Untersuchen sie den Pageview Index Job
+
+- Wie lange ist der Job gelaufen?
+- Wieviele Mapper sind zum Einsagz gekommen und wie lange haben diese im Schnitt gearbeitet?
+- Wieviele Daten haben Mapper und Reducer jeweils erzeugt?
