@@ -13,7 +13,7 @@ import java.util.StringTokenizer;
 import java.util.stream.Stream;
 
 import com.backtype.hadoop.pail.Pail;
-import de.hska.iwi.bdelab.schema.*;
+import de.hska.iwi.bdelab.schema2.*;
 import org.apache.hadoop.fs.FileSystem;
 
 import org.apache.commons.cli.BasicParser;

@@ -29,7 +29,14 @@ cp template.hadoop.properties hadoop.properties
 vim hadoop.properties # file editieren
 ```
 
-Ändern Sie die Property `hadoop.user.name` auf ihren IT-Accountnamen.
+Ändern Sie die Property `hadoop.user.name` auf ihren IZ-Accountnamen.
+
+Das Projekt basiert auf dem vorherigen Projekt `bdelab1`, daher muss dieses mit Maven installiert werden. Dies geschieht wie folgt:
+
+```
+cd ~/git/bdelab/lab1
+mvn install
+```
 
 ### MapReduce
 
@@ -44,7 +51,7 @@ Vor der Verwendung muss das Projekt mit maven erstellt werden:
 ```
 cd ~/git/bdelab/lab2 # bzw eigener Pfad
 ./genthrift.sh # Thrift Klassen für Aufgabe 2.2 generieren
-mvn package
+mvn install
 ```
 
 Zunächst sind dann noch Eingabedaten in das HDFS zu schreiben:

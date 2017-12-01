@@ -1,4 +1,4 @@
-namespace java de.hska.iwi.bdelab.schema
+namespace java de.hska.iwi.bdelab.schema2
 
 union UserID {
   1: string user_id;

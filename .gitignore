@@ -1,7 +1,4 @@
 
-hadoop.properties
-
-
 # Created by https://www.gitignore.io/api/maven,eclipse,java,intellij,macos,linux,windows,vagrant
 
 ### Maven ###
@@ -207,8 +204,11 @@ hs_err_pid*
 
 ### BDELAB ###
 
+hadoop.properties
+
 # generated thrift classes will not be shipped
 **/de/hska/iwi/bdelab/schema/
+**/de/hska/iwi/bdelab/schema2/
 
 # refs
 #BatchloaderRef.java

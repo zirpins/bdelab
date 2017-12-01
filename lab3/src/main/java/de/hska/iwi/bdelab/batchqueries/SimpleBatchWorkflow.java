@@ -12,8 +12,8 @@ import cascading.tap.Tap;
 import cascading.tuple.Tuple;
 import cascalog.CascalogFunction;
 import de.hska.iwi.bdelab.batchstore.FileUtils;
-import de.hska.iwi.bdelab.schema.Data;
-import de.hska.iwi.bdelab.schema.DataUnit;
+import de.hska.iwi.bdelab.schema2.Data;
+import de.hska.iwi.bdelab.schema2.DataUnit;
 import jcascalog.Api;
 import jcascalog.Subquery;
 

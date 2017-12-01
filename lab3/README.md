@@ -4,7 +4,7 @@ Die Aufgabe vertieft die Verarbeitungsschritte im Batch Layer. Es wird **Cascalo
 
 ## Lab3 Vorbereitung
 
-Als Plattform wird weiterhin **Hadoop 2.7.3** verwendet. Cascalog basiert auf verschiedenen Frameworks, die auf der Hadoop Plattform aufsetzen. Die komplette Umgebung ist im LKIT schon fertig instaliert.
+Als Plattform wird weiterhin **Hadoop 2.7.3** verwendet. Cascalog basiert auf verschiedenen Frameworks, die auf der Hadoop Plattform aufsetzen. Die komplette Umgebung ist im LKIT schon fertig installiert.
 
 ## Lab3 Durchführung
 
