@@ -10,13 +10,13 @@ import com.backtype.cascading.tap.PailTap;
 import com.backtype.cascading.tap.PailTap.PailTapOptions;
 import com.backtype.hadoop.pail.PailSpec;
 import com.backtype.hadoop.pail.PailStructure;
+import de.hska.iwi.bdelab.batchstore.FileUtils;
+import de.hska.iwi.bdelab.schema2.DataUnit;
 
 import cascading.flow.FlowProcess;
 import cascading.operation.FunctionCall;
 import cascading.tuple.Tuple;
 import cascalog.CascalogFunction;
-import de.hska.iwi.bdelab.batchstore.FileUtils;
-import de.hska.iwi.bdelab.schema.DataUnit;
 import jcascalog.Api;
 import manning.tap.DataPailStructure;
 import manning.tap.SplitDataPailStructure;

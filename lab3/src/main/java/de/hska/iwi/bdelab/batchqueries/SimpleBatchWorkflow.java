@@ -1,11 +1,8 @@
 package de.hska.iwi.bdelab.batchqueries;
 
 import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
-
 import com.backtype.hadoop.pail.Pail;
 import com.twitter.maple.tap.StdoutTap;
-
 import cascading.flow.FlowProcess;
 import cascading.operation.FunctionCall;
 import cascading.tap.Tap;
