@@ -38,7 +38,7 @@ cd ~/git/bdelab/lab1
 mvn install
 ```
 
-Nun kann das Projekt mit maven erstellt werden:
+Nun kann das Projekt mit Maven gebaut werden:
 
 ```
 cd ~/git/bdelab/lab2 # bzw eigener Pfad
