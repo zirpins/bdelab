@@ -22,9 +22,20 @@ Klonen Sie das `bdelab` Projekt.
 mkdir -p ~/git
 cd ~/git
 git clone https://github.com/zirpins/bdelab.git
+cd bdelab/lab1
 ```
 
 Die Aufgabe basiert auf dem Maven Projekt `bdelab1` im Ordner `bdelab/lab1`. Importieren Sie das Projekt zunächst in Ihren Eclipse Workspace oder eine IDE ihrer Wahl.
+
+Im Projekt muss dann noch eine Konfigurationsdatei angelegt werden, um den IZ-Accountnamen für HDFS zu spezifizieren. Dazu ist ein Template vorgegeben, das sie wie folgt kopieren und anpassen können:
+
+```
+cd ~/git/bdelab/lab1/src/main/resources
+cp template.hadoop.properties hadoop.properties
+vim hadoop.properties # file editieren
+```
+
+Ändern Sie die Property `hadoop.user.name` auf ihren IT-Accountnamen.
 
 ### TEIL 1: Datenmodellierung
 
@@ -74,8 +85,6 @@ Als Dokumentation der Pail API dienen die **Tests** des Projekts (eine gute Einf
 
 #### Vorbereitung
 
-Passen Sie in der Datei `FileUtils.java` in `de.hska.iwi.bdelab.batchstore` ihre IZ-Account ID an.
-
 Das `bdelab1` Projekt enthält zwei *JUnit* Testfälle `FactsIOTest.java` zur Speicherung von Fakten in Pails und `FactsOpsTests.java` um neue Fakten an eine bestehende Basis anzuhängen. Hierzu wird eine Erweiterung von Pail verwendet, die zur Serialisierung die generierten Thrift Klassen nutzt. Die entsprechenden Pail Strukturen (u.a. `ThriftPailStructure.java` und `DataPailStructure.java`) sind im Paket `manning.tap` enthalten. In den Testklassen kann mit der Konstanten `LOCAL` (Default ist `true`) zwischen lokalem und verteiltem Dateisystem umgeschaltet werden.
 
 Führen Sie beide JUnit Tests zunächst lokal und dann auf HDFS aus:
@@ -114,8 +123,7 @@ Bauen und Starten der Anwendung:
 - Die Anwendung wird über das `hadoop` Skript gestartet.
 
     ```
-    cd ~/git/bdelab/lab1/target
-    hadoop jar bdelab1-0.0.1-SNAPSHOT-jar-with-dependencies.jar de.hska.iwi.bdelab.batchstore.Batchloader
+    hadoop jar ~/git/bdelab/lab1/target/bdelab1-0.0.1-SNAPSHOT-jar-with-dependencies.jar de.hska.iwi.bdelab.batchstore.Batchloader
     ```
 
 # Referenzen

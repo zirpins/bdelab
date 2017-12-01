@@ -19,7 +19,17 @@ git pull
 cd lab2
 ```
 
-Die Aufgabe basiert auf dem Maven Projekt `bdelab2` im Ordner `bdelab/lab2`. Importieren Sie das Projekt zunächst wieder in Ihren Eclipse Workspace (falls nicht schon geschehen). 
+Die Aufgabe basiert auf dem Maven Projekt `bdelab2` im Ordner `bdelab/lab2`. Importieren Sie das Projekt zunächst wieder in Ihren Eclipse Workspace. 
+
+Im Projekt muss wieder eine Konfigurationsdatei angelegt werden, um den IZ-Accountnamen für HDFS zu spezifizieren. Dazu ist ein Template vorgegeben, das sie wie folgt kopieren und anpassen können:
+
+```
+cd ~/git/bdelab/lab2/src/main/resources
+cp template.hadoop.properties hadoop.properties
+vim hadoop.properties # file editieren
+```
+
+Ändern Sie die Property `hadoop.user.name` auf ihren IT-Accountnamen.
 
 ### MapReduce
 
@@ -70,22 +80,27 @@ hadoop fs -rmdir /user/<IZ-Name>/wc/out
 
 MapReduce Jobs können ihre Daten aus vielen Quellen beziehen. Die Klasse `CountFacts` zählt z.B. die Anzahl der Fakten eines Batch Stores auf Basis von *Pails*.
 
-Um zunächst eine Datenbasis zu erstellen, kann das Skript `batchloader.sh` in lab2 in einer Shell  gestartet werden. 
+Um zunächst eine Datenbasis zu erstellen, kann das Skript `batchloader.sh` in lab2 in einer Shell gestartet werden. 
 
 ```
 ./batchloader.sh -h
-usage: batchloader [-g <arg>] [-h] [-m] [-r] [-s] [-v]
- -g,--generate <arg>   generate number of records (rounded down to full 1000th, 1000 is default)
+usage: batchloader [-f <arg>] [-g <arg>] [-h] [-m] [-r] [-s] [-v]
+ -f,--file <arg>       use a non-default input file of base-
+											 records
+ -g,--generate <arg>   generate number of records (rounded down 
+											 to full 1000th, 1000 is default)
  -h,--help             show help
- -m,--master           move new data to 'master' pail (otherwise they remain in 'new' pail)
- -r,--reset            reset all batch data files before importing
+ -m,--master           move new data to 'master' pail (otherwise 
+											 they remain in 'new' pail)
+ -r,--reset            reset all fact data files before
+											 importing
  -s,--show             dump generated records to stdout (slow)
  -v,--verbose          be verbose
 ```
 
 Der `Batchloader` liest Pageviews aus einer Textdatei, generiert daraus einen beliebig langen randomisierten Clickstream und schreibt diesen in einen 'new' oder 'master' Pail. 
 
-Generieren sie ein paar Clicks (z.B. 10.000.000 (knapp 1GB), bitte zunächst nicht mehr, um den Cluster im Laborbetrieb zu schonen) in den master Pail wie folgt:
+Generieren sie ein paar Clicks (z.B. 10.000.000 - knapp 1GB) in den master Pail wie folgt:
 
 ```
 ./batchloader.sh -g 10000000 -m
