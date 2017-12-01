@@ -28,6 +28,14 @@ vim hadoop.properties # file editieren
 
 Ändern Sie die Property `hadoop.user.name` auf ihren IT-Accountnamen.
 
+Das Projekt basiert auf dem vorherigen Projekt `bdelab2`, daher muss dieses mit Maven installiert werden. Dies geschieht wie folgt:
+
+```
+cd ~/git/bdelab/lab2
+mvn install
+```
+
+
 ### Cascalog
 
 Cascalog ist ein Framework zur deklarativen Beschreibung komplexer Abfragen, die als MapReduce Programme auf einem Hadoop YARN Cluster ausgeführt werden können. Cascalog ist in *Clojure* geschrieben, wir verwenden die zugehörige Java API **JCascalog** zur Programmierung von Cascalog Anfragen in Java.
