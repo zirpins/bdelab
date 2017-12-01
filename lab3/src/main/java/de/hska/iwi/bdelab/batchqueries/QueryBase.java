@@ -10,16 +10,17 @@ import com.backtype.cascading.tap.PailTap;
 import com.backtype.cascading.tap.PailTap.PailTapOptions;
 import com.backtype.hadoop.pail.PailSpec;
 import com.backtype.hadoop.pail.PailStructure;
+
 import de.hska.iwi.bdelab.batchstore.FileUtils;
 import de.hska.iwi.bdelab.schema2.DataUnit;
+import manning.tap2.DataPailStructure;
+import manning.tap2.SplitDataPailStructure;
 
 import cascading.flow.FlowProcess;
 import cascading.operation.FunctionCall;
 import cascading.tuple.Tuple;
 import cascalog.CascalogFunction;
 import jcascalog.Api;
-import manning.tap.DataPailStructure;
-import manning.tap.SplitDataPailStructure;
 import org.slf4j.Logger;
 
 public class QueryBase {

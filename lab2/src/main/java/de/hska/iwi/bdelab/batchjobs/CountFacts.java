@@ -4,6 +4,10 @@ package de.hska.iwi.bdelab.batchjobs;
 import java.io.IOException;
 import java.util.Iterator;
 
+import de.hska.iwi.bdelab.batchstore.FileUtils;
+import de.hska.iwi.bdelab.schema2.Data;
+import manning.tap2.DataPailStructure;
+
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.BytesWritable;
@@ -26,10 +30,6 @@ import org.apache.thrift.TException;
 import com.backtype.hadoop.pail.PailFormat;
 import com.backtype.hadoop.pail.PailFormatFactory;
 import com.backtype.hadoop.pail.PailSpec;
-
-import de.hska.iwi.bdelab.batchstore.FileUtils;
-import de.hska.iwi.bdelab.schema.Data;
-import manning.tap.DataPailStructure;
 
 public class CountFacts {
 

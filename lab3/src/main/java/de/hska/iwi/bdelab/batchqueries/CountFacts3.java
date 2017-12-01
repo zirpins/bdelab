@@ -1,15 +1,10 @@
 package de.hska.iwi.bdelab.batchqueries;
 
-import cascading.flow.Flow;
 import cascading.tap.Tap;
-import com.twitter.maple.tap.StdoutTap;
 import de.hska.iwi.bdelab.batchstore.FileUtils;
 import jcascalog.Api;
 import jcascalog.Subquery;
 import jcascalog.op.Count;
-
-import java.util.HashMap;
-import java.util.Map;
 
 // Count Facts in Cascalog (schreibt auf hdfs)
 public class CountFacts3 extends QueryBase {

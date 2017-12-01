@@ -8,11 +8,12 @@ import cascading.operation.FunctionCall;
 import cascading.tap.Tap;
 import cascading.tuple.Tuple;
 import cascalog.CascalogFunction;
+import jcascalog.Api;
+import jcascalog.Subquery;
+
 import de.hska.iwi.bdelab.batchstore.FileUtils;
 import de.hska.iwi.bdelab.schema2.Data;
 import de.hska.iwi.bdelab.schema2.DataUnit;
-import jcascalog.Api;
-import jcascalog.Subquery;
 
 import java.io.IOException;
 

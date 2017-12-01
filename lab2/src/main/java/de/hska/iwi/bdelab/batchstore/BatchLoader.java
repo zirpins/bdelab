@@ -13,7 +13,9 @@ import java.util.StringTokenizer;
 import java.util.stream.Stream;
 
 import com.backtype.hadoop.pail.Pail;
+import com.backtype.hadoop.pail.PailFormatFactory;
 import de.hska.iwi.bdelab.schema2.*;
+import manning.tap2.DataPailStructure;
 import org.apache.hadoop.fs.FileSystem;
 
 import org.apache.commons.cli.BasicParser;
@@ -172,7 +174,7 @@ public class BatchLoader {
             if (reset
                     || !fs.exists(new Path(FileUtils.prepareNewFactsPath(false, false)))
                     || !fs.exists(new Path(FileUtils.prepareMasterFactsPath(false, false)))) {
-                FileUtils.resetStoreFiles();
+                resetStoreFiles();
             }
 
             // open existing pail directory for new facts
@@ -198,6 +200,18 @@ public class BatchLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void resetStoreFiles() throws IOException {
+        FileSystem fs = FileUtils.getFs(false);
+
+        String masterPathName = FileUtils.prepareMasterFactsPath(true, false);
+        String newPathName = FileUtils.prepareNewFactsPath(true, false);
+
+        Pail.create(fs, newPathName,
+                PailFormatFactory.getDefaultCopy().setStructure(new DataPailStructure()));
+        Pail.create(fs, masterPathName,
+                PailFormatFactory.getDefaultCopy().setStructure(new DataPailStructure()), false);
     }
 
     private List<String> createPageviewsCache() {

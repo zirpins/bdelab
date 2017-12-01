@@ -5,9 +5,6 @@ import java.io.InputStream;
 import java.net.URI;
 import java.util.Properties;
 
-import com.backtype.hadoop.pail.Pail;
-import com.backtype.hadoop.pail.PailFormatFactory;
-import manning.tap.DataPailStructure;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -62,23 +59,6 @@ public class FileUtils {
             e.printStackTrace();
         }
         return fs;
-    }
-
-    public static void resetBatchFiles() throws IOException {
-        resetStoreFiles();
-        prepareResultsPath(null, true, false);
-    }
-
-    public static void resetStoreFiles() throws IOException {
-        FileSystem fs = FileUtils.getFs(false);
-
-        String masterPathName = prepareMasterFactsPath(true, false);
-        String newPathName = prepareNewFactsPath(true, false);
-
-        Pail.create(fs, newPathName,
-                PailFormatFactory.getDefaultCopy().setStructure(new DataPailStructure()));
-        Pail.create(fs, masterPathName,
-                PailFormatFactory.getDefaultCopy().setStructure(new DataPailStructure()), false);
     }
 
     public static String prepareMasterFactsPath(boolean delete, boolean local) throws IOException {
