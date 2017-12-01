@@ -38,23 +38,23 @@ cd ~/git/bdelab/lab1
 mvn install
 ```
 
+Nun kann das Projekt mit maven erstellt werden:
+
+```
+cd ~/git/bdelab/lab2 # bzw eigener Pfad
+./genthrift.sh # Geänderte Thrift Klassen für Aufgabe 2.2 generieren
+mvn install
+```
+
 ### MapReduce
 
 Die Vorberechnung von Views aus der Faktenbasis erfolgt durch parallele Batch Verarbeitung in einem Cluster. Als Plattform für das Management der Ressourcen im Cluster wird Hadoop YARN verwendet. Das Map Reduce Framework übernimmt die Verteilung von parallelen Jobs auf unterschiedliche Rechnerknoten. Im LKIT ist Hadoop (zZ in der Version 2.7.3) als Multi-Node Cluster installiert und läuft dort permanent. Jobs können mit dem `hadoop` (oder auch `yarn`) Skript eingestellt werden.
 
 #### Aufgabe 2.1 (WordCount)
 
-Zunächst soll ein einfaches Beispiel betrachtet werden. Im Paket `de.hska.iwi.bdelab.batchjobs` liegen die Klassen `WordCountOldAPI` und `WordCountNewAPI` mit MapReduce Jobs für das klassische Word Count Beispiel. Für MapReduce existieren zwei APIs: `org.apache.hadoop.mapred` und die neuere `org.apache.hadoop.mapreduce`. Die APIs unterscheiden sich leicht in der Verwendung, sind aber weitgehend äquivalent. Ein [Tutorium](http://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html) findet sich auf der Hadoop Webseite.
+Zum warm werden betrachten wir ein einfaches Beispiel. Im Paket `de.hska.iwi.bdelab.batchjobs` liegen die Klassen `WordCountOldAPI` und `WordCountNewAPI` mit MapReduce Jobs für das klassische Word Count Beispiel. Für MapReduce existieren zwei APIs: `org.apache.hadoop.mapred` und die neuere `org.apache.hadoop.mapreduce`. Die APIs unterscheiden sich leicht in der Verwendung, sind aber weitgehend äquivalent. Ein [Tutorium](http://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html) findet sich auf der Hadoop Webseite.
 
-Vor der Verwendung muss das Projekt mit maven erstellt werden:
-
-```
-cd ~/git/bdelab/lab2 # bzw eigener Pfad
-./genthrift.sh # Thrift Klassen für Aufgabe 2.2 generieren
-mvn install
-```
-
-Zunächst sind dann noch Eingabedaten in das HDFS zu schreiben:
+Zunächst werden nun Eingabedaten in das HDFS geschrieben:
 
 ```
 hadoop fs -mkdir -p /user/<IZ-Name>/wc/in
@@ -64,7 +64,7 @@ hadoop fs -put file01 /user/<IZ-Name>/wc/in
 hadoop fs -put file02 /user/<IZ-Name>/wc/in
 ```
 
-Nun kann der Job gestartet werden:
+Dann kann der Job gestartet werden:
 
 ```
 hadoop jar ~/git/bdelab/lab2/target/bdelab2-0.0.1-SNAPSHOT-jar-with-dependencies.jar de.hska.iwi.bdelab.batchjobs.WordCountOldAPI /user/<IZ-Name>/wc/in /user/<IZ-Name>/wc/out
