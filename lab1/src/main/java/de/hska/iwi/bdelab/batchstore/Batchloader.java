@@ -12,68 +12,73 @@ import de.hska.iwi.bdelab.schema.Data;
 import org.apache.hadoop.fs.FileSystem;
 
 public class Batchloader {
-	private final String DATA_FILE = "pageviews.txt";
 
-	// ...
+    // ...
 
-	private void readPageviewsAsStream() {
-		try {
-			URI uri = Batchloader.class.getClassLoader().getResource(DATA_FILE).toURI();
-			try (Stream<String> stream = Files.lines(Paths.get(uri))) {
-				stream.forEach(line -> writeToPail(getDatafromString(line)));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} catch (URISyntaxException e1) {
-			e1.printStackTrace();
-		}
-	}
+    private void readPageviewsAsStream() {
+        try {
+            URI uri = Batchloader.class.getClassLoader().getResource("pageviews.txt").toURI();
+            try (Stream<String> stream = Files.lines(Paths.get(uri))) {
+                stream.forEach(line -> writeToPail(getDatafromString(line)));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } catch (URISyntaxException e1) {
+            e1.printStackTrace();
+        }
+    }
 
-	private Data getDatafromString(String pageview) {
-		Data result = null;
+    private Data getDatafromString(String pageview) {
+        Data result = null;
 
-		StringTokenizer tokenizer = new StringTokenizer(pageview);
-		String ip = tokenizer.nextToken();
-		String url = tokenizer.nextToken();
-		String time = tokenizer.nextToken();
+        StringTokenizer tokenizer = new StringTokenizer(pageview);
+        String ip = tokenizer.nextToken();
+        String url = tokenizer.nextToken();
+        String time = tokenizer.nextToken();
 
-		System.out.println(ip + " " + url + " " + time);
+        System.out.println(ip + " " + url + " " + time);
 
-		// ... create Data
+        // ... create Data
 
-		return result;
-	}
+        return result;
+    }
 
-	private void writeToPail(Data data) {
-		// ...
-	}
+    private void writeToPail(Data data) {
+        // ...
+    }
 
-	private void importPageviews() {
-		boolean LOCAL = false;
+    private void importPageviews() {
 
-		try {
-			FileSystem fs = FileUtils.getFs(LOCAL);
-			// temporary pail goes to tmp folder
-			String newPath = FileUtils.getTmpPath(fs, FileUtils.NEW_PAIL, true, LOCAL);
-			// master pail goes to permanent fact store
-			String masterPath = FileUtils.getPath(fs, FileUtils.FACT_BASE, FileUtils.MASTER_PAIL, false, LOCAL);
+        // change this to "true" if you want to work
+        // on the local machines' file system instead of hdfs
+        boolean LOCAL = false;
 
-			// set up new pail and a stream
-			// ...
+        try {
+            // set up filesystem
+            FileSystem fs = FileUtils.getFs(LOCAL);
 
-			// write facts to new pail
-			readPageviewsAsStream();
+            // prepare temporary pail folder
+            String newPath = FileUtils.prepareNewFactsPath(true, LOCAL);
 
-			// set up master pail and absorb new pail
-			// ...
+            // master pail goes to permanent fact store
+            String masterPath = FileUtils.prepareMasterFactsPath(false, LOCAL);
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+            // set up new pail and a stream
+            // ...
 
-	public static void main(String[] args) {
-		Batchloader loader = new Batchloader();
-		loader.importPageviews();
-	}
+            // write facts to new pail
+            readPageviewsAsStream();
+
+            // set up master pail and absorb new pail
+            // ...
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        Batchloader loader = new Batchloader();
+        loader.importPageviews();
+    }
 }

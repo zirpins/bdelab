@@ -1,5 +1,6 @@
 package de.hska.iwi.bdelab.batchstore;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -34,6 +35,17 @@ public class BatchLoader {
     private Pail.TypedRecordOutputStream os;
     private boolean show = false;
 
+    private static URI FILE_URI;
+
+    static {
+        try {
+            FILE_URI = BatchLoader.class.getClassLoader().getResource("pageviews.txt").toURI();
+        } catch (URISyntaxException e) {
+            // this is not supposed to happen
+            e.printStackTrace();
+        }
+    }
+
     public class Cli {
         private String[] args = null;
         private Options options = new Options();
@@ -46,10 +58,11 @@ public class BatchLoader {
 
             options.addOption("v", "verbose", false, "be verbose");
             options.addOption("h", "help", false, "show help");
-            options.addOption("r", "reset", false, "reset all batch data files before importing");
+            options.addOption("r", "reset", false, "reset all fact data files before importing");
             options.addOption("s", "show", false, "dump generated records to stdout (slow)");
             options.addOption("m", "master", false, "move new data to 'master' pail (otherwise they remain in 'new' pail)");
             options.addOption("g", "generate", true, "generate number of records (rounded down to full 1000th, 1000 is default)");
+            options.addOption("f", "file", true, "use a non-default input file of base-records");
         }
 
         void parse() {
@@ -111,6 +124,26 @@ public class BatchLoader {
                     }
                 }
 
+                if (cmd.hasOption("f")) {
+                    if (cmd.getOptionValue("f") != null) {
+                        log.info("Using cli argument -f=" + cmd.getOptionValue("f"));
+                        try {
+                            String filename = cmd.getOptionValue("f");
+                            File file = new File(filename);
+                            FILE_URI = file.toURI();
+                            if (!file.exists()) throw new IllegalArgumentException("File does not exist");
+                            log.info("Using input file: " + FILE_URI.toString());
+                        } catch (RuntimeException re) {
+                            log.error("Illegal option value for cli argument -g: " + re.getMessage());
+                            System.exit(1);
+                        }
+                    } else {
+                        log.error("Missing option value for cli argument -f");
+                        help();
+                        System.exit(1);
+                    }
+                }
+
                 importPageviews(reset, master, records);
 
             } catch (ParseException e) {
@@ -137,13 +170,13 @@ public class BatchLoader {
 
             // optionally reset all data files (or first time bootstrap)
             if (reset
-                    || !fs.exists(new Path(FileUtils.prepareNewFactsPath(false,false)))
-                    || !fs.exists(new Path(FileUtils.prepareMasterFactsPath(false,false)))) {
-                FileUtils.resetBatchFiles();
+                    || !fs.exists(new Path(FileUtils.prepareNewFactsPath(false, false)))
+                    || !fs.exists(new Path(FileUtils.prepareMasterFactsPath(false, false)))) {
+                FileUtils.resetStoreFiles();
             }
 
             // open existing pail directory for new facts
-            Pail newPail = new Pail(fs, FileUtils.prepareNewFactsPath(false,false));
+            Pail newPail = new Pail(fs, FileUtils.prepareNewFactsPath(false, false));
 
             // write facts to new pail
             os = newPail.openWrite();
@@ -154,7 +187,7 @@ public class BatchLoader {
             // receive incoming data
             if (master) {
                 // open existing pail directory for master facts
-                Pail masterPail = new Pail(fs, FileUtils.prepareMasterFactsPath(false,false));
+                Pail masterPail = new Pail(fs, FileUtils.prepareMasterFactsPath(false, false));
                 log.info("Absorbing new pail data into master pail");
                 // move data away from new pail to master pail
                 masterPail.absorb(newPail);
@@ -170,18 +203,9 @@ public class BatchLoader {
     private List<String> createPageviewsCache() {
         URI uri = null;
 
-        // Construct file uri
-        try {
-            uri = BatchLoader.class.getClassLoader().getResource("pageviews.txt").toURI();
-        } catch (URISyntaxException e1) {
-            e1.printStackTrace();
-            // this is not supposed to happen
-            System.exit(1);
-        }
-
         // Read pageviews file into cache
         List<String> cache = new LinkedList<>();
-        try (Stream<String> stream = Files.lines(Paths.get(uri))) {
+        try (Stream<String> stream = Files.lines(Paths.get(FILE_URI))) {
             stream.forEach(cache::add);
         } catch (IOException e2) {
             e2.printStackTrace();

@@ -1,4 +1,7 @@
 
+hadoop.properties
+
+
 # Created by https://www.gitignore.io/api/maven,eclipse,java,intellij,macos,linux,windows,vagrant
 
 ### Maven ###
@@ -16,7 +19,7 @@ buildNumber.properties
 ### Eclipse ###
 
 .metadata
-bin/
+#bin/
 tmp/
 *.tmp
 *.bak
@@ -208,7 +211,7 @@ hs_err_pid*
 **/de/hska/iwi/bdelab/schema/
 
 # refs
-BatchloaderRef.java
-PageviewsRef.java
-SimpleBatchWorkflowRef.java
-stormpageviewsref/
+#BatchloaderRef.java
+#PageviewsRef.java
+#SimpleBatchWorkflowRef.java
+#stormpageviewsref/
