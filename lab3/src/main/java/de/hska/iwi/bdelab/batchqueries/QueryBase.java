@@ -90,8 +90,4 @@ public class QueryBase {
         }
     }
 
-    public static Tap textlineTap(String path) {
-        return (Tap) Api.hfsTextline(path);
-    }
-
 }
