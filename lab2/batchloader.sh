@@ -8,7 +8,7 @@ if [ -z "${HADOOP_SH}" ]
     then
         if [ -e "${HADOOP_HOME}/bin/hadoop" ]
             then
-                HADOOP_SH="${HADOOP_HOME}/bin/hadoop.sh"
+                HADOOP_SH="${HADOOP_HOME}/bin/hadoop"
                 echo "Using default Hadoop script."
             else
                 echo "No hadoop script found."
