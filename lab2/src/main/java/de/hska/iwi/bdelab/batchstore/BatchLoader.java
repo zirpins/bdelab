@@ -254,10 +254,10 @@ public class BatchLoader {
         int epoch = Integer.parseInt(time);
 
         if (randomize) {
-            ip = rand.nextInt(257)
-                    + "." + rand.nextInt(257)
-                    + "." + rand.nextInt(257)
-                    + "." + rand.nextInt(257);
+            ip = rand.nextInt(256)
+                    + "." + rand.nextInt(256)
+                    + "." + rand.nextInt(256)
+                    + "." + rand.nextInt(256);
             int DAY_IN_SECS = 60 * 60 * 24;
             epoch = epoch + rand.nextInt(DAY_IN_SECS * 2) - DAY_IN_SECS;
         }
