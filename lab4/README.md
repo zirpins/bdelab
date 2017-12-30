@@ -18,10 +18,24 @@ Insbesondere können Kafka *Topics* als Multi-Consumer-Queues genutzt werden, be
 Die Semantik von Kafka Topics passt optimal zur Stream-Verarbeitung in Storm und wird dort zur garantierten Verarbeitung (at-least-once) von Nachrichten verwendet.
 
 ## Lab4 Vorbereitung
-Als Infrastruktur benötigen wir nur eine **Kafka 0.9+** Plattform, die im LKIT bereitgestellt wird. Für Storm nutzen wir einen eingebetteten "Cluster").
+### Infrastruktur
+Als Infrastruktur benötigen wir nur eine **Kafka 0.9+** Plattform, die im LKIT bereitgestellt wird. Für Storm nutzen wir einen eingebetteten "Cluster"). 
 
-**TODO Kafka LKIT Intro**
+Auf iwi-lkit-ux-06 läuft ein Kafka Server.
 
+Auf den Poolrechnern befindet sich Kafka unter nachfolgendem Verzeichnis:
+
+/usr/local/opt/kafka_2.11-1.0.0
+
+
+
+### Topic, Producer und Consumer Skripte
+Kafka bietet die Möglichkeit per Konsole Topics anzulegen sowie Producer und Consumer zu starten. Dies erfolgt mittels Skript, welche sich innerhalb des Kafka Verzeichnisses im Ordner bin befinden.
+
+Die relevanten Skripte sind:  
+kafka-console-consumer.sh  
+kafka-console-producer.sh  
+kafka-topics.sh
 ## Lab4 Durchführung
 
 Melden Sie sich im LKIT Pool an und starten Sie dort Eclipse. Aktualisieren Sie das `bdelab` Git Repository.
