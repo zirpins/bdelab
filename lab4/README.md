@@ -27,15 +27,13 @@ Auf den Poolrechnern befindet sich Kafka unter nachfolgendem Verzeichnis:
 
 /usr/local/opt/kafka_2.11-1.0.0
 
-
-
 ### Topic, Producer und Consumer Skripte
-Kafka bietet die Möglichkeit per Konsole Topics anzulegen sowie Producer und Consumer zu starten. Dies erfolgt mittels Skript, welche sich innerhalb des Kafka Verzeichnisses im Ordner bin befinden.
+Kafka bietet die Möglichkeit per Konsole Topics anzulegen sowie Producer und Consumer zu starten. Dies erfolgt mittels Skripten, welche sich innerhalb des Kafka Verzeichnisses im Ordner bin befinden.
 
 Die relevanten Skripte sind:  
-kafka-console-consumer.sh  
-kafka-console-producer.sh  
-kafka-topics.sh
+- kafka-console-consumer.sh  
+- kafka-console-producer.sh  
+- kafka-topics.sh
 ## Lab4 Durchführung
 
 Melden Sie sich im LKIT Pool an und starten Sie dort Eclipse. Aktualisieren Sie das `bdelab` Git Repository.
@@ -52,17 +50,12 @@ Die Aufgabe basiert auf dem Maven Projekt `storm-word-count` im Ordner `bdelab/l
 Probieren Sie das Wordcount Beispiel aus. Hierzu muss zunächst Kafka vorbereitet werden, danach kann die Storm Topology zur Ausführung kommen.
 
 ### Kafka Wordcount Topic und Producer aufsetzen
-
-**TODO Anpassen des folgenden Prozesses für die LKIT Installation:**
-
 Das schnelle Aufsetzen von Kafka wird in [Kafka Quickstart](http://kafka.apache.org/quickstart) beschrieben. Folgen Sie dieser Anleitung und
-- ...starten sie den **Zookeeper Server**
-- ...starten Sie den **Kafka Server**
 - ...richten Sie ein **Topic** `sentence` ein
 - ...starten Sie einen **Producer** für `sentence`
 - ...testen Sie das Topic mit einem **Consumer**
 
-Auf `VISLABv84+` ist Kafka im Verzeichnis `~vislab/lib/kafka_2.11-0.10.1.0` installiert.
+Achten Sie darauf **localhost** durch **iwi-lkit-ux-06** zu ersetzen.
 
 ### Storm Topologie ausführen
 Öffnen Sie das *storm-word-count Projekt* in Ihrer IDE. `WordcountTopology` ist im Package `de.hska.iwi.vsys.bdelab.streaming` spezifiziert. Die Topologie nutzt [storm-kafka-client](https://github.com/apache/storm/tree/v1.0.2/external/storm-kafka-client) zur Definition des `SentenceSpout` (als *Consumer* des Kafka Topics `sentence`).
