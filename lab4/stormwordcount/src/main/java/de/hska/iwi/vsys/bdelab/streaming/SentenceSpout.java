@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.storm.kafka.spout.KafkaSpoutRetryExponentialBackoff.TimeInterval.*;
 
 class SentenceSpout extends KafkaSpout<String, String> {
-    private static final String KAFKA_SEED_ADDRESS = "127.0.0.1:9092";
+    private static final String KAFKA_SEED_ADDRESS = "iwi-lkit-ux-06:9092";
     private static final String KAFKA_SENTENCE_GROUP_ID = "kafkaSentenceSpoutGroup";
 
     private static final String TOPIC_NAME = "sentence";
