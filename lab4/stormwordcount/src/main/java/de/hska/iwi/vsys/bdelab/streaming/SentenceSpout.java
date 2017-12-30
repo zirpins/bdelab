@@ -14,7 +14,6 @@ class SentenceSpout extends KafkaSpout<String, String> {
 
     private static final String TOPIC_NAME = "sentence";
     private static final Fields OUTPUT_FIELDS = new Fields("topic", "partition", "offset", "key", "value");
-
     public static final String STREAM_NAME = "sentence_stream";
 
     /**
