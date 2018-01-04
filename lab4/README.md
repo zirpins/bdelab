@@ -1,5 +1,4 @@
 # Aufgabe 4: Stream Processing / Apache Storm
-
 Die Aufgabe veranschaulicht die Verarbeitung im Speed Layer. Wir betrachten dabei *One-at-a-Time Streaming* auf Basis von [Apache Storm](http://storm.apache.org/). Als Datenquelle dient eine *Multi-Consumer-Queue* auf Basis von [Apache Kafka](http://kafka.apache.org/).
 
 Mit dieser Konfiguration untersuchen wir zunächst das *Beispiel einer einfachen Word Count Implementierung*. Die Aufgabe besteht dann in der *Implementierung des Pageviews-pro-Zeit Index als Storm Topologie*.
@@ -18,24 +17,29 @@ Insbesondere können Kafka *Topics* als Multi-Consumer-Queues genutzt werden, be
 Die Semantik von Kafka Topics passt optimal zur Stream-Verarbeitung in Storm und wird dort zur garantierten Verarbeitung (at-least-once) von Nachrichten verwendet.
 
 ## Lab4 Vorbereitung
+
 ### Infrastruktur
 Als Infrastruktur benötigen wir nur eine **Kafka 0.9+** Plattform, die im LKIT bereitgestellt wird. Für Storm nutzen wir einen eingebetteten "Cluster"). 
 
-Auf iwi-lkit-ux-06 läuft ein Kafka Server.
+Auf `iwi-lkit-ux-06` läuft ein Kafka Server, der die Verwaltung von Queues übernimmt. 
 
-Auf den Poolrechnern befindet sich Kafka unter nachfolgendem Verzeichnis:
-
-/usr/local/opt/kafka_2.11-1.0.0
+Auf jedem Poolrechner gibt es zudem Kafka Tools in Form von Skripten, die die interaktive Kommunikation mit dem Kafka Server ermöglichen.
 
 ### Topic, Producer und Consumer Skripte
-Kafka bietet die Möglichkeit per Konsole Topics anzulegen sowie Producer und Consumer zu starten. Dies erfolgt mittels Skripten, welche sich innerhalb des Kafka Verzeichnisses im Ordner bin befinden.
+Kafka bietet die Möglichkeit per Konsole Topics anzulegen sowie Producer und Consumer zu starten. Dies erfolgt mittels Skripten, welche sich innerhalb des Kafka Verzeichnisses in folgendem Ordner befinden:
+
+```
+/usr/local/opt/kafka_2.11-1.0.0/bin
+```
 
 Die relevanten Skripte sind:  
-- kafka-console-consumer.sh  
-- kafka-console-producer.sh  
-- kafka-topics.sh
-## Lab4 Durchführung
+- `kafka-console-consumer.sh`
+- `kafka-console-producer.sh`  
+- `kafka-topics.sh`
 
+Sie werden die Verwendung dieser Skripte in Aufgabe 4.1 kennenlernen.
+
+## Lab4 Durchführung
 Melden Sie sich im LKIT Pool an und starten Sie dort Eclipse. Aktualisieren Sie das `bdelab` Git Repository.
 
 ```
@@ -51,16 +55,14 @@ Probieren Sie das Wordcount Beispiel aus. Hierzu muss zunächst Kafka vorbereite
 
 ### Kafka Wordcount Topic und Producer aufsetzen
 Das schnelle Aufsetzen von Kafka wird in [Kafka Quickstart](http://kafka.apache.org/quickstart) beschrieben. Folgen Sie dieser Anleitung und
-- ...richten Sie ein **Topic** `sentence` ein
-- ...starten Sie einen **Producer** für `sentence`
+- ...richten Sie ein **Topic** `sentence_<IZ-ID>` ein
+- ...starten Sie einen **Producer** für `sentence_<IZ-ID>`
 - ...testen Sie das Topic mit einem **Consumer**
 
-Achten Sie darauf **localhost** durch **iwi-lkit-ux-06** zu ersetzen.
-
 ### Storm Topologie ausführen
-Öffnen Sie das *storm-word-count Projekt* in Ihrer IDE. `WordcountTopology` ist im Package `de.hska.iwi.vsys.bdelab.streaming` spezifiziert. Die Topologie nutzt [storm-kafka-client](https://github.com/apache/storm/tree/v1.0.2/external/storm-kafka-client) zur Definition des `SentenceSpout` (als *Consumer* des Kafka Topics `sentence`).
+Öffnen Sie das *storm-word-count Projekt* in Ihrer IDE. `WordcountTopology` ist im Package `de.hska.iwi.vsys.bdelab.streaming` spezifiziert. Die Topologie nutzt [storm-kafka-client](https://github.com/apache/storm/tree/v1.0.2/external/storm-kafka-client) zur Definition des `SentenceSpout` (als *Consumer* des Kafka Topics `sentence_<IZ-ID>`). **Achtung:** Ersetzen Sie `sentence_<IZ-ID>` in `SentenceSpout.java` durch ihre Kennung.
 
-Starten Sie `WordcountTopology` als Java-Anwendung in der IDE. Geben Sie nun einige Sätze in den Command Line Producer ein und beobachten Sie die Ausgaben der Topologie, um die Verarbeitung nachzuverfolgen. (Sie können auch in der der `WordcountTopology` die Debug-Ausgabe aktivieren, um u.a. das "Acking" der Tupel zu beobachten.)
+Bauen Sie dann das Projekt und starten Sie `WordcountTopology` als Java-Anwendung in der IDE. Geben Sie nun einige Sätze in den Command Line Producer ein und beobachten Sie die Ausgaben der Topologie, um die Verarbeitung nachzuverfolgen. (Sie können auch in der der `WordcountTopology` die Debug-Ausgabe aktivieren, um u.a. das "Acking" der Tupel zu beobachten.)
 
 Versuchen Sie, die Implementierung der Topologie mit Spout und Bolts nachzuvollziehen.
 
@@ -68,7 +70,7 @@ Versuchen Sie, die Implementierung der Topologie mit Spout und Bolts nachzuvollz
 Die eigentliche Aufgabe besteht nun darin, die Berechnung des Pageview-pro-Zeit Index als Storm Topologie zu implementieren.
 
 ### Kafka vorbereiten
-Legen Sie zunächst ein passendes Kafka Topic für Pageview Ereignisse an. Gehen Sie für die Kafka Record Values (d.h. die Nachrichteninhalte) vom Format der vorangegangenen Aufgaben aus:
+Legen Sie zunächst ein passendes Kafka Topic für Pageview Ereignisse an (wählen Sie einen individuellen Namen, um Namenskonflikte mit anderen Teilnehmern zu vermeiden). Gehen Sie für die Kafka Record Values (d.h. die Nachrichteninhalte) vom Format der vorangegangenen Aufgaben aus:
 
 ```
 <IP> <URL> <EPOCH-TIME>

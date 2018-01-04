@@ -12,7 +12,7 @@ class SentenceSpout extends KafkaSpout<String, String> {
     private static final String KAFKA_SEED_ADDRESS = "iwi-lkit-ux-06:9092";
     private static final String KAFKA_SENTENCE_GROUP_ID = "kafkaSentenceSpoutGroup";
 
-    private static final String TOPIC_NAME = "sentence";
+    private static final String TOPIC_NAME = "sentence_<IZ-ID>";
     private static final Fields OUTPUT_FIELDS = new Fields("topic", "partition", "offset", "key", "value");
     public static final String STREAM_NAME = "sentence_stream";
 
