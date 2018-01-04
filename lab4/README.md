@@ -23,7 +23,7 @@ Als Infrastruktur benötigen wir nur eine **Kafka 0.9+** Plattform, die im LKIT 
 
 Auf `iwi-lkit-ux-06` läuft ein Kafka Server, der die Verwaltung von Queues übernimmt. 
 
-Auf jedem Poolrechner gibt es zudem Kafka Tools in Form von Skripten, die die interaktive Kommunikation mit dem Kafka Server ermöglichen.
+Auf jedem Poolrechner gibt es zudem Kafka Tools in Form von Skripten zur Interaktion mit dem Kafka Server.
 
 ### Topic, Producer und Consumer Skripte
 Kafka bietet die Möglichkeit per Konsole Topics anzulegen sowie Producer und Consumer zu starten. Dies erfolgt mittels Skripten, welche sich innerhalb des Kafka Verzeichnisses in folgendem Ordner befinden:
