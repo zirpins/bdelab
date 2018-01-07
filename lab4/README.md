@@ -39,6 +39,13 @@ Die relevanten Skripte sind:
 
 Sie werden die Verwendung dieser Skripte in Aufgabe 4.1 kennenlernen.
 
+### Die Verwandlung
+Das Kafka Topic namens "metamorph" wurde für Sie bereits vorbereitet. Sie teilen sich dieses Topic mit Ihren Kommilitonen und können es zum Beispiel für das Wordcount Beispiel verwenden.
+
+Es enthält die englische Ausgabe von Franz Kafkas Erzählung Die Verwandlung ([Durch Projekt Gutenberg bereitgestellt](http://www.gutenberg.org/ebooks/5200)).
+
+**Falls Sie aus Versehen Änderungen am Topic durchgeführt haben, teilen Sie dies bitte einem Betreuer mit.**
+
 ## Lab4 Durchführung
 Melden Sie sich im LKIT Pool an und starten Sie dort Eclipse. Aktualisieren Sie das `bdelab` Git Repository.
 
