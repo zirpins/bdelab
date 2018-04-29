@@ -43,7 +43,8 @@ public class CountFacts {
             if (des == null) des = new TDeserializer();
             return des;
         }
-
+        
+        // helper method for deserializing de.hska.iwi.bdelab.schema2.Data objects (aka facts)
         public Data deserialize(byte[] record) {
             Data ret = new Data();
             try {
@@ -54,16 +55,21 @@ public class CountFacts {
             return ret;
         }
 
+        // THE MAP FUNCTION
         public void map(Text key, BytesWritable value, OutputCollector<Text, IntWritable> output, Reporter reporter)
                 throws IOException {
 
+            // This is how to deserialize a fact (de.hska.iwi.bdelab.schema2.Data object) from incoming pail data
             System.out.println(deserialize(value.getBytes()));
 
+            // a static key results in a single partition on the reducer-side
             output.collect(word, one);
         }
     }
 
     public static class Reduce extends MapReduceBase implements Reducer<Text, IntWritable, Text, IntWritable> {
+        
+        // THE REDUCE FUNCTION
         public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, IntWritable> output,
                            Reporter reporter) throws IOException {
             int sum = 0;
