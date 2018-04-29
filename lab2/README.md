@@ -31,7 +31,7 @@ vim hadoop.properties # file editieren
 
 Ändern Sie die Property `hadoop.user.name` auf ihren IZ-Accountnamen.
 
-Das Projekt basiert auf dem vorherigen Projekt `bdelab1`, daher muss dieses mit Maven installiert werden. Dies geschieht wie folgt:
+Das Projekt basiert auf dem vorherigen Projekt `bdelab1`, **daher muss es mit Maven installiert werden**. Dies geschieht wie folgt:
 
 ```
 cd ~/git/bdelab/lab1
