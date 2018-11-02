@@ -28,7 +28,7 @@ Der Master Knoten dient im HDFS als sog. **NameNode** zur Verwaltung von Namen u
 
 ### Nutzung des Clusters
 
-Die Nutzung des Clusters erfolgt über die Kommandozeile (Shell). Hierzu dient das Skript `hadoop`. Im LKIT ist das Skript unter `/usr/local/opt/hadoop-2.7.3/bin/hadoop` installiert. Sie können es zur einfacheren Nutzung der `$PATH` Umgebungsvariable hinzufügen. Ergänzen sie dazu folgende Zeile in ihrer `~\.profile` Datei:
+Die Nutzung des Clusters erfolgt über die Kommandozeile (Shell). Hierzu dient das Skript `hadoop`. Im LKIT ist das Skript unter `/usr/local/opt/hadoop-2.7.3/bin/hadoop` installiert. Sie können es zur einfacheren Nutzung der `$PATH` Umgebungsvariable hinzufügen. Ergänzen sie dazu folgende Zeile in ihrer `~/.profile` Datei:
 
 ```
 PATH="$PATH:/usr/local/opt/hadoop-2.7.3/bin"
