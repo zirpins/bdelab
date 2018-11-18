@@ -66,7 +66,7 @@ generierten Thrift Klassen sehen.
 
 #### Aufgabe 1.1.1 (Graph Schema)
 
-- **Skizzieren** Sie das Graph Schema der gegebenen Social Media Anwendung. 
+- **Skizzieren** Sie das Graph Schema der gegebenen Social Media Anwendung.
 - Sie können sich dazu beliebige Fakten als Beispiele ausdenken, es sollten am
   Ende Beispiele für alle Eigenschaften und Beziehungen aller Entitäten zu sehen
   sein.
@@ -126,11 +126,11 @@ Referenz zu klonen und in die IDE zu importieren. Allerdings basiert es auf dem
 Das `bdelab1` Projekt enthält zwei *JUnit* Testfälle `FactsIOTest.java` zur
 Speicherung von Fakten in Pails und `FactsOpsTests.java` um neue Fakten an eine
 bestehende Basis anzuhängen. Hierzu wird eine Erweiterung von Pail verwendet,
-die zur Serialisierung die generierten Thrift Klassen nutzt. Die entsprechenden
-Pail Strukturen (u.a. `ThriftPailStructure.java` und `DataPailStructure.java`)
-sind im Paket `manning.de.hska.iwi.bdelab.batchstore.tap2` enthalten. In den
-Testklassen kann mit der Konstanten `LOCAL` (Default ist `true`) zwischen
-lokalem und verteiltem Dateisystem umgeschaltet werden.
+die zur Serialisierung generierte Thrift Klassen nutzt. Die entsprechenden Pail
+Strukturen (u.a. `ThriftPailStructure.java` und `DataPailStructure.java`) sind
+im Paket `manning.tap` enthalten. In den Testklassen kann mit der Konstanten
+`LOCAL` (Default ist `true`) zwischen lokalem und verteiltem Dateisystem
+umgeschaltet werden.
 
 Führen Sie beide JUnit Tests zunächst lokal und dann auf HDFS aus:
 
