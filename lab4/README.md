@@ -109,15 +109,36 @@ Das schnelle Aufsetzen von Kafka wird in [Kafka
 Quickstart](http://kafka.apache.org/quickstart) beschrieben. Folgen Sie dieser
 Anleitung und
 
-- ...richten Sie ein **Topic** `sentence_<IZ-ID>` ein (Step 3 des Kafka Quickstart)
-- ...starten Sie einen **Producer** für `sentence_<IZ-ID>` (Step 4 des Kafka Quickstart)
+- ...richten Sie ein **Topic** `sentence_<IZ-ID>` ein (Step 3 des Kafka
+  Quickstart)
+- ...starten Sie einen **Producer** für `sentence_<IZ-ID>` (Step 4 des Kafka
+  Quickstart)
 - ...testen Sie das Topic mit einem **Consumer** (Step 5 des Kafka Quickstart)
 
 in den einzelnen Schritten verändern Sie die Server Adressen bitte wie folgt:
 
-- Ersetzen Sie beim Aufruf von `kafka-topics.sh` die Option `--zookeeper localhost:2181` durch `--zookeeper iwi-lkit-ux-06:2181`
-- Ersetzen Sie beim Aufruf von `kafka-console-producer.sh` die Option `--broker-list localhost:9092` durch `--broker-list iwi-lkit-ux-06:9092`
-- Ersetzen Sie beim Aufruf von `kafka-console-consumer.sh` die Option `--bootstrap-server localhost:9092` durch `--bootstrap-server iwi-lkit-ux-06:9092`
+- Ersetzen Sie beim Aufruf von `kafka-topics.sh` die Option `--zookeeper
+  localhost:2181` durch `--zookeeper iwi-lkit-ux-06:2181`
+
+```bash
+cd /usr/local/opt/kafka_2.11-1.0.0
+bin/kafka-topics.sh --create --zookeeper iwi-lkit-ux-06:2181 --replication-factor 1 --partitions 1 --topic sentence_<IZ-ID>
+```
+
+- Ersetzen Sie beim Aufruf von `kafka-console-producer.sh` die Option
+  `--broker-list localhost:9092` durch `--broker-list iwi-lkit-ux-06:9092`
+
+```bash
+bin/kafka-console-producer.sh --broker-list iwi-lkit-ux-06:9092 --topic sentence_<IZ-ID>
+```
+
+- Ersetzen Sie beim Aufruf von `kafka-console-consumer.sh` die Option
+  `--bootstrap-server localhost:9092` durch `--bootstrap-server
+  iwi-lkit-ux-06:9092`
+
+```bash
+bin/kafka-console-consumer.sh --bootstrap-server iwi-lkit-ux-06:9092 --topic sentence_<IZ-ID> --from-beginning
+```
 
 ### Storm Topologie ausführen
 
@@ -129,10 +150,19 @@ zur Definition des `SentenceSpout` (als *Consumer* des Kafka Topics
 `SentenceSpout.java` durch ihre Kennung.
 
 Bauen Sie dann das Projekt und starten Sie `WordcountTopology` als
-Java-Anwendung in der IDE. Geben Sie nun einige Sätze in den Command Line
-Producer ein und beobachten Sie die Ausgaben der Topologie, um die Verarbeitung
-nachzuverfolgen. (Sie können auch in der der `WordcountTopology` die
-Debug-Ausgabe aktivieren, um u.a. das "Acking" der Tupel zu beobachten.)
+Java-Anwendung in der IDE. Alternativ können Sie auch maven zur Ausführung im
+Terminal nutzen:
+
+```bash
+cd ~/git/bdelab # bzw eigener Pfad des Repositories
+cd lab4/stormwordcount
+mvn exec:java
+```
+
+Geben Sie nun einige Sätze in den Command Line Producer ein und beobachten Sie
+die Ausgaben der Topologie, um die Verarbeitung nachzuverfolgen. (Sie können
+auch in der der `WordcountTopology` die Debug-Ausgabe aktivieren, um u.a. das
+"Acking" der Tupel zu beobachten.)
 
 Versuchen Sie, die Implementierung der Topologie mit Spout und Bolts
 nachzuvollziehen.
