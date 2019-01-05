@@ -215,3 +215,5 @@ hadoop.properties
 #PageviewsRef.java
 #SimpleBatchWorkflowRef.java
 #stormpageviewsref/
+
+.vscode/

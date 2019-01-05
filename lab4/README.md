@@ -109,9 +109,15 @@ Das schnelle Aufsetzen von Kafka wird in [Kafka
 Quickstart](http://kafka.apache.org/quickstart) beschrieben. Folgen Sie dieser
 Anleitung und
 
-- ...richten Sie ein **Topic** `sentence_<IZ-ID>` ein
-- ...starten Sie einen **Producer** für `sentence_<IZ-ID>`
-- ...testen Sie das Topic mit einem **Consumer**
+- ...richten Sie ein **Topic** `sentence_<IZ-ID>` ein (Step 3 des Kafka Quickstart)
+- ...starten Sie einen **Producer** für `sentence_<IZ-ID>` (Step 4 des Kafka Quickstart)
+- ...testen Sie das Topic mit einem **Consumer** (Step 5 des Kafka Quickstart)
+
+in den einzelnen Schritten verändern Sie die Server Adressen bitte wie folgt:
+
+- Ersetzen Sie beim Aufruf von `kafka-topics.sh` die Option `--zookeeper localhost:2181` durch `--zookeeper iwi-lkit-ux-06:2181`
+- Ersetzen Sie beim Aufruf von `kafka-console-producer.sh` die Option `--broker-list localhost:9092` durch `--broker-list iwi-lkit-ux-06:9092`
+- Ersetzen Sie beim Aufruf von `kafka-console-consumer.sh` die Option `--bootstrap-server localhost:9092` durch `--bootstrap-server iwi-lkit-ux-06:9092`
 
 ### Storm Topologie ausführen
 
