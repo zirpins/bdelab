@@ -96,7 +96,7 @@ hadoop jar ~/git/bdelab/lab2/target/bdelab2-0.0.1-SNAPSHOT-jar-with-dependencies
 Das Ergebnis findet sich im Anschluss im HDFS:
 
 ```bash
-hadoop fs -cat /user/<IZ-Name>/wc/out/part-00000
+hadoop fs -cat /user/$USER/wc/out/part-00000
 ```
 
 Zur Wiederholung des Experiments muss der Ordner `wc/out` wieder gelöscht
