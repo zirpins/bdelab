@@ -183,6 +183,5 @@ Beantworten sie nun bitte noch einige Fragen zu der letzten Aufgabe:
   gearbeitet?
 - Wieviele Daten haben Mapper und Reducer jeweils erzeugt?
 
-Die gesuchten Informationen können sie in der YARN Web App finden. Die Ausgabe
-auf der Konsole reicht dazu nicht. Suchen sie in der Web App die statistische
-Auswertung ihres Jobs.
+Die gesuchten Informationen können sie in der **YARN Web App** unter der **Tracking URL** bzw. in der **Job History** finden. **Die Ausgabe
+auf der Konsole reicht dazu nicht.** Suchen sie in der Web App (Tracking URL bzw. History) die statistische Auswertung ihres Jobs (in Hadoop-Terminologie spricht man auch von **"Counters"**, die viele verschiedene Metriken darstellen).
