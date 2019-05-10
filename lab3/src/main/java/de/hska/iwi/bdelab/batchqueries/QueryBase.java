@@ -80,7 +80,7 @@ public class QueryBase {
     }
 
     // Nützliche Funktion zur Ausgabe des Streams an beliebiger Stelle einer
-    // Querie
+    // Query
     @SuppressWarnings("serial")
     public static class Debug extends CascalogFunction {
         @SuppressWarnings("rawtypes")
