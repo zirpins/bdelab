@@ -44,7 +44,7 @@ verwendet.
 ### Infrastruktur
 
 Als Infrastruktur benötigen wir nur eine **Kafka 0.9+** Plattform, die im LKIT
-bereitgestellt wird. Für Storm nutzen wir einen eingebetteten "Cluster").
+bereitgestellt wird. Für Storm nutzen wir einen eingebetteten "Cluster".
 
 Auf `iwi-lkit-ux-06` läuft ein Kafka Server, der die Verwaltung von Queues
 übernimmt.
@@ -122,14 +122,14 @@ in den einzelnen Schritten verändern Sie die Server Adressen bitte wie folgt:
 
 ```bash
 cd /usr/local/opt/kafka_2.11-1.0.0
-bin/kafka-topics.sh --create --zookeeper iwi-lkit-ux-06:2181 --replication-factor 1 --partitions 1 --topic sentence_<IZ-ID>
+bin/kafka-topics.sh --create --zookeeper iwi-lkit-ux-06:2181 --replication-factor 1 --partitions 1 --topic sentence_$USER
 ```
 
 - Ersetzen Sie beim Aufruf von `kafka-console-producer.sh` die Option
   `--broker-list localhost:9092` durch `--broker-list iwi-lkit-ux-06:9092`
 
 ```bash
-bin/kafka-console-producer.sh --broker-list iwi-lkit-ux-06:9092 --topic sentence_<IZ-ID>
+bin/kafka-console-producer.sh --broker-list iwi-lkit-ux-06:9092 --topic sentence_$USER
 ```
 
 - Ersetzen Sie beim Aufruf von `kafka-console-consumer.sh` die Option
@@ -137,7 +137,7 @@ bin/kafka-console-producer.sh --broker-list iwi-lkit-ux-06:9092 --topic sentence
   iwi-lkit-ux-06:9092`
 
 ```bash
-bin/kafka-console-consumer.sh --bootstrap-server iwi-lkit-ux-06:9092 --topic sentence_<IZ-ID> --from-beginning
+bin/kafka-console-consumer.sh --bootstrap-server iwi-lkit-ux-06:9092 --topic sentence_$USER --from-beginning
 ```
 
 ### Storm Topologie ausführen
